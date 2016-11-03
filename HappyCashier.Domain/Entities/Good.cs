@@ -2,10 +2,9 @@
 
 namespace HappyCashier.Domain.Entities
 {
-	public class SaleItemEntity : BaseEntity
+	public class Good : BaseEntity
 	{
-		public int SaleId { get; set; }
-		public int GoodId { get; set; }
+		public string Name { get; set; }
 		public float Price { get; set; }
 		public float Amount { get; set; }
 	}
