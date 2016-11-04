@@ -1,4 +1,4 @@
-﻿namespace HappyCashier.View
+﻿namespace HappyCashier.View.Forms
 {
 	partial class MainForm
 	{

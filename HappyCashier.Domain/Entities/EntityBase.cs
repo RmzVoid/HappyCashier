@@ -2,7 +2,7 @@
 
 namespace HappyCashier.Domain.Entities
 {
-	public class BaseEntity
+	public abstract class EntityBase
 	{
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int Id { get; set; }

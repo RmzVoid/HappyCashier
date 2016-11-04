@@ -48,14 +48,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseLayer\IDatabase.cs" />
-    <Compile Include="CashierDbContext.cs" />
-    <Compile Include="DatabaseLayer\MySqlDatabase.cs" />
+    <Compile Include="DatabaseLayer\SampleDatabaseContext.cs" />
+    <Compile Include="DataSources\IAccountDataSource.cs" />
+    <Compile Include="DatabaseLayer\DatabaseContext.cs" />
+    <Compile Include="DataSources\AccountDataSource.cs" />
+    <Compile Include="DatabaseLayer\SampleDatabaseInitializer.cs" />
+    <Compile Include="DatabaseTransferObjects\DtoBase.cs" />
     <Compile Include="Entities\Account.cs" />
-    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\Good.cs" />
     <Compile Include="Entities\Sale.cs" />
     <Compile Include="Entities\SaleItem.cs" />
+    <Compile Include="Models\AccountModel.cs" />
+    <Compile Include="Models\IAccountModel.cs" />
+    <Compile Include="Models\IGoodModel.cs" />
+    <Compile Include="Models\ISaleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

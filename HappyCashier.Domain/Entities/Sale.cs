@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace HappyCashier.Domain.Entities
 {
-	public class Sale : BaseEntity
+	public class Sale : EntityBase
 	{
 		public DateTime? @DateTime { get; set; }
-		public int AccountId { get; set; }
+		public Account Account { get; set; }
 		public ICollection<SaleItem> SaleItems { get; set; }
 	}
 }

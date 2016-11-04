@@ -2,7 +2,7 @@
 
 namespace HappyCashier.Domain.Entities
 {
-	public class Account : BaseEntity
+	public class Account : EntityBase
 	{
 		public string Name { get; set; }
 		public string Password { get; set; }

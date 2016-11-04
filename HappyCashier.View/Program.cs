@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using HappyCashier.View.Forms;
+using HappyCashier.Presenter.Presenters;
+using HappyCashier.Domain.Models;
 using HappyCashier.Domain.DatabaseLayer;
+using HappyCashier.Domain.DataSources;
 
 namespace HappyCashier.View
 {
@@ -16,13 +17,13 @@ namespace HappyCashier.View
 		[STAThread]
 		static void Main()
 		{
-			MySqlDatabase db = new MySqlDatabase();
-
-			var accounts = db.GetAccountsList();
-
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+
+			AccountModel model = new AccountModel(new DatabaseAccountDataSource(new DatabaseContext()));
+			LoginPresenter presenter = new LoginPresenter(new LoginForm(), model);
+
+			presenter.Run();
 		}
 	}
 }
