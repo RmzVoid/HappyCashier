@@ -40,10 +40,10 @@ namespace HappyCashier.Domain.DataSources
 			_context.SaveChanges();
 		}
 
-		public bool IsValidAccount(string account, string password)
+		public Account GetAccount(string account, string password)
 		{
 			// usually account name case insensitive, but now won't use CI comparing
-			return _context.Account.Where(a => a.Name == account && a.Password == password).FirstOrDefault() != null;
+			return _context.Account.Where(a => a.Name == account && a.Password == password).FirstOrDefault();
 		}
 
 		private DatabaseContext _context;

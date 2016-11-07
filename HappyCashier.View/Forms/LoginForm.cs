@@ -8,14 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using Microsoft.Practices.Unity;
+
+using HappyCashier.Presenter;
 using HappyCashier.Presenter.Views;
 
 namespace HappyCashier.View.Forms
 {
 	public partial class LoginForm : Form, ILoginView
 	{
-		public LoginForm()
+		public LoginForm(IUnityContainer container, ApplicationContext context)
 		{
+			_container = container;
+			_context = context;
+
 			InitializeComponent();
 
 			this.Shown += (sender, args) => Invoke(RecentAccountRequested);
@@ -37,7 +43,13 @@ namespace HappyCashier.View.Forms
 
 		public void ShowMe()
 		{
-			Application.Run(this);
+			_context.MainForm = this;
+			Application.Run(_context);
+		}
+
+		public void CloseMe()
+		{
+			Close();
 		}
 
 		public string AccountName
@@ -69,5 +81,8 @@ namespace HappyCashier.View.Forms
 		public event Action RecentAccountRequested;
 		public event Action AccountListRequested;
 		public event Action LoginRequested;
+
+		private IUnityContainer _container;
+		private ApplicationContext _context;
 	}
 }

@@ -49,11 +49,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseLayer\SampleDatabaseContext.cs" />
+    <Compile Include="DataSources\DatabaseSaleDataSource.cs" />
     <Compile Include="DataSources\IAccountDataSource.cs" />
     <Compile Include="DatabaseLayer\DatabaseContext.cs" />
-    <Compile Include="DataSources\AccountDataSource.cs" />
+    <Compile Include="DataSources\DatabaseAccountDataSource.cs" />
     <Compile Include="DatabaseLayer\SampleDatabaseInitializer.cs" />
-    <Compile Include="DatabaseTransferObjects\DtoBase.cs" />
+    <Compile Include="DataSources\ISaleDataSource.cs" />
+    <Compile Include="DataTransferObjects\GoodDto.cs" />
+    <Compile Include="DataTransferObjects\SaleItemDto.cs" />
+    <Compile Include="DataTransferObjects\SaleDto.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\EntityBase.cs" />
     <Compile Include="Entities\Good.cs" />
@@ -63,6 +67,7 @@
     <Compile Include="Models\IAccountModel.cs" />
     <Compile Include="Models\IGoodModel.cs" />
     <Compile Include="Models\ISaleModel.cs" />
+    <Compile Include="Models\SaleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

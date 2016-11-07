@@ -8,8 +8,8 @@ namespace HappyCashier.Domain.DatabaseLayer
 			: base()
 		{
 			// database initialization policy: drop/create always
-			// beahviuor should be moved to configuration file
-			Database.SetInitializer<DatabaseContext>(new SampleDatabaseInitializer());
+			// behaviour should be moved to configuration file
+			Database.SetInitializer<SampleDatabaseContext>(new DatabaseInitializer<SampleDatabaseContext>());
 		}
 	}
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using HappyCashier.Domain.DataSources;
+using HappyCashier.Domain.Entities;
 
 namespace HappyCashier.Domain.Models
 {
@@ -25,19 +26,9 @@ namespace HappyCashier.Domain.Models
 			return _dataSource.GetAccountList();
 		}
 
-		public void Create(string account, string password)
+		public Account GetAccount(string account, string password)
 		{
-			_dataSource.Create(account, password);
-		}
-
-		public void Delete(string account)
-		{
-			_dataSource.Delete(account);
-		}
-
-		public bool Login(string account, string password)
-		{
-			return _dataSource.IsValidAccount(account, password);
+			return _dataSource.GetAccount(account, password);
 		}
 
 		private IAccountDataSource _dataSource;

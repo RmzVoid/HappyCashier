@@ -5,9 +5,10 @@ using HappyCashier.Domain.Entities;
 
 namespace HappyCashier.Domain.DatabaseLayer
 {
-	class SampleDatabaseInitializer : DropCreateDatabaseAlways<DatabaseContext>
+	class DatabaseInitializer<T> : CreateDatabaseIfNotExists<T>
+		where T : DatabaseContext
 	{
-		protected override void Seed(DatabaseContext context)
+		protected override void Seed(T context)
 		{
 			List<Account> accounts = new List<Account>
 			{
@@ -26,6 +27,7 @@ namespace HappyCashier.Domain.DatabaseLayer
 				new Good(){ Name = "Водка", Amount = 20m, Price = 405.20m },
 				new Good(){ Name = "Лимонад", Amount = 40m, Price = 28.40m },
 				new Good(){ Name = "Сигареты", Amount = 34m, Price = 90.90m },
+				new Good(){ Name = "Сыр", Amount = 13m, Price = 388.45m },
 			};
 
 			context.Account.AddRange(accounts);

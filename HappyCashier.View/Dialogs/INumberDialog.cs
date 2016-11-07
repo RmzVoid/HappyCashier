@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HappyCashier.Domain.DatabaseTransferObjects
+namespace HappyCashier.View.Dialogs
 {
-	public class DtoBase
+	interface INumberDialog<T>
 	{
-		public int Id { get; set; }
+		T RequestUserValue();
 	}
 }

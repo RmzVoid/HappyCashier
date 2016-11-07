@@ -1,8 +1,8 @@
 ﻿using HappyCashier.Domain.DataTransferObjects;
 
-namespace HappyCashier.Domain.Models
+namespace HappyCashier.Domain.DataSources
 {
-	public interface ISaleModel
+	public interface ISaleDataSource
 	{
 		int OpenSale(int accountId);
 		void CloseSale(SaleDto saleToClose);
