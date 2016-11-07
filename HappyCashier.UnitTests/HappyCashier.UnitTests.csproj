@@ -60,6 +60,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -88,6 +89,10 @@
     <ProjectReference Include="..\HappyCashier.Presenter\HappyCashier.Presenter.csproj">
       <Project>{3a2aeb94-8cf6-4de6-b1f5-e0c49ec29f6f}</Project>
       <Name>HappyCashier.Presenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HappyCashier.View\HappyCashier.View.csproj">
+      <Project>{4f35453a-7e97-47cd-9aa1-5e147c0d2476}</Project>
+      <Name>HappyCashier.View</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

@@ -1,25 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using Microsoft.Practices.Unity;
-
-using HappyCashier.Presenter;
 using HappyCashier.Presenter.Views;
 
 namespace HappyCashier.View.Forms
 {
 	public partial class LoginForm : Form, ILoginView
 	{
-		public LoginForm(IUnityContainer container, ApplicationContext context)
+		public LoginForm(ApplicationContext context)
 		{
-			_container = container;
 			_context = context;
 
 			InitializeComponent();
@@ -29,6 +20,7 @@ namespace HappyCashier.View.Forms
 			buttonCancel.Click += (sender, args) => this.Close();
 			buttonLogin.Click += (sender, args) => Invoke(LoginRequested);
 			accountNameInput.DropDown += (sender, args) => Invoke(AccountListRequested);
+			accountNameInput.SelectedIndexChanged += (sender, args) => passwordInput.Focus();
 		}
 
 		public void ShowError(string message)
@@ -55,7 +47,19 @@ namespace HappyCashier.View.Forms
 		public string AccountName
 		{
 			get { return accountNameInput.Text; }
-			set { accountNameInput.Text = value; }
+			set
+			{
+				if (string.IsNullOrWhiteSpace(value))
+				{
+					accountNameInput.Text = string.Empty;
+					accountNameInput.Focus();
+				}
+				else
+				{
+					accountNameInput.Text = value;
+					passwordInput.Focus();
+				}
+			}
 		}
 
 		public string AccountPassword
@@ -63,13 +67,15 @@ namespace HappyCashier.View.Forms
 			get { return passwordInput.Text; }
 		}
 
-		public IEnumerable<string> AccountList
+		public ISet<string> AccountList
 		{
-			get { return accountNameInput.Items.Cast<string>(); }
-			set 
+			get { return _accounts; }
+			set
 			{
-				if(value == null)
+				if (value == null || (_accounts != null && _accounts.SetEquals(value)))
 					return;
+
+				_accounts = value;
 
 				string text = accountNameInput.Text;
 				accountNameInput.Items.Clear();
@@ -82,7 +88,7 @@ namespace HappyCashier.View.Forms
 		public event Action AccountListRequested;
 		public event Action LoginRequested;
 
-		private IUnityContainer _container;
 		private ApplicationContext _context;
+		private ISet<string> _accounts;
 	}
 }

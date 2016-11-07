@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 using NSubstitute;
 using NUnit.Framework;
@@ -9,9 +10,13 @@ using HappyCashier.Domain.Models;
 using HappyCashier.Presenter.Views;
 using HappyCashier.Presenter.Presenters;
 using HappyCashier.Domain.Entities;
+using HappyCashier.View.Forms;
 
 using AccountEntity = HappyCashier.Domain.Entities.Account;
-using AccountObject = HappyCashier.Presenter.Account;
+using AccountObject = HappyCashier.Presenter.DataTransferObjects.Account;
+using HappyCashier.Domain.DatabaseLayer;
+using HappyCashier.Domain.DataSources;
+using HappyCashier.Presenter.Common;
 
 namespace HappyCashier.Test
 {
@@ -23,7 +28,7 @@ namespace HappyCashier.Test
 		{
 			_view = Substitute.For<ILoginView>();
 			_model = Substitute.For<IAccountModel>();
-			_container = Substitute.For<IUnityContainer>();
+			_controller = Substitute.For<IApplicationController>();
 
 			_model.GetAccount(Arg.Any<string>(), Arg.Any<string>())
 				.Returns(arg => 
@@ -31,12 +36,12 @@ namespace HappyCashier.Test
 					new AccountEntity() { Id = 1, Name = "Даша", Password = "11111" } : null);
 
 			_model.GetAccountList()
-				.ReturnsForAnyArgs(x => new List<string>() { "Даша", "Паша", "Володя" });
+				.ReturnsForAnyArgs(x => new HashSet<string>() { "Даша", "Паша", "Володя" });
 
 			_model.GetRecentActive()
 				.ReturnsForAnyArgs(x => "Володя");
 
-			var presenter = new LoginPresenter(_container, _view, _model);
+			var presenter = new LoginPresenter(_controller, _view, _model);
 			presenter.Run();
 		}
 
@@ -54,8 +59,12 @@ namespace HappyCashier.Test
 		{
 			_view.AccountName.Returns("Даша");
 			_view.AccountPassword.Returns("11111");
+
 			_view.LoginRequested += Raise.Event<Action>();
-			_view.Received().CloseMe();
+
+			_controller.Received().Run<SalePresenter, AccountObject>(Arg.Any<AccountObject>());
+
+			_view.DidNotReceive().ShowError(Arg.Any<string>());
 		}
 
 		[Test]
@@ -74,6 +83,6 @@ namespace HappyCashier.Test
 
 		private ILoginView _view;
 		private IAccountModel _model;
-		private IUnityContainer _container;
+		private IApplicationController _controller;
 	}
 }

@@ -21,7 +21,7 @@ namespace HappyCashier.Domain.Models
 			return _dataSource.GetRecentActive();
 		}
 
-		public IEnumerable<string> GetAccountList()
+		public ISet<string> GetAccountList()
 		{
 			return _dataSource.GetAccountList();
 		}
@@ -29,6 +29,11 @@ namespace HappyCashier.Domain.Models
 		public Account GetAccount(string account, string password)
 		{
 			return _dataSource.GetAccount(account, password);
+		}
+
+		public void UpdateAccountInfo(Account account)
+		{
+			_dataSource.UpdateAccountInfo(account);
 		}
 
 		private IAccountDataSource _dataSource;

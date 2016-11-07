@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Windows.Forms;
 
-using Microsoft.Practices.Unity;
-
-using HappyCashier.View.Forms;
-using HappyCashier.Presenter.Presenters;
-using HappyCashier.Domain.Models;
 using HappyCashier.Domain.DatabaseLayer;
 using HappyCashier.Domain.DataSources;
-using HappyCashier.View.Dialogs;
+using HappyCashier.Domain.Models;
+using HappyCashier.Presenter.Common;
+using HappyCashier.Presenter.Presenters;
 using HappyCashier.Presenter.Views;
-using HappyCashier.Presenter;
+using HappyCashier.View.Forms;
 
 namespace HappyCashier.View
 {
@@ -25,20 +22,17 @@ namespace HappyCashier.View
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
 
-			UnityContainer uc = new UnityContainer();
+			IApplicationController controller = new ApplicationController()
+				.RegisterType<DatabaseContext, SampleDatabaseContext>()
+				.RegisterType<IAccountDataSource, DatabaseAccountDataSource>()
+				.RegisterType<ISaleDataSource, DatabaseSaleDataSource>()
+				.RegisterType<IAccountModel, AccountModel>()
+				.RegisterType<ISaleModel, SaleModel>()
+				.RegisterType<ILoginView, LoginForm>()
+				.RegisterType<ISaleView, SaleForm>()
+				.RegisterInstance<ApplicationContext>(new ApplicationContext());
 
-			uc.RegisterType<DatabaseContext, SampleDatabaseContext>();
-			uc.RegisterType<IAccountDataSource, DatabaseAccountDataSource>();
-			uc.RegisterType<ISaleDataSource, DatabaseSaleDataSource>();
-			uc.RegisterType<IAccountModel, AccountModel>();
-			uc.RegisterType<ISaleModel, SaleModel>();
-			uc.RegisterType<ILoginView, LoginForm>();
-			uc.RegisterType<ISaleView, MainForm>();
-			uc.RegisterInstance<ApplicationContext>(new ApplicationContext());
-
-			LoginPresenter loginPresenter = new LoginPresenter(uc, uc.Resolve<ILoginView>(), uc.Resolve<IAccountModel>());
-
-			loginPresenter.Run();
+			controller.Run<LoginPresenter>();
 		}
 	}
 }

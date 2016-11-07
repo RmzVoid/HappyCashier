@@ -55,17 +55,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.cs" />
-    <Compile Include="DataTransferObjects\SaleItem.cs" />
-    <Compile Include="DataTransferObjects\SaleInfo.cs" />
-    <Compile Include="Document.cs" />
-    <Compile Include="Presenters\IPresenter.cs" />
+    <Compile Include="DataTransferObjects\Account.cs" />
+    <Compile Include="Common\ApplicationController.cs" />
+    <Compile Include="Common\IApplicationController.cs" />
+    <Compile Include="DataTransferObjects\Document.cs" />
+    <Compile Include="Common\BasePresenter.cs" />
+    <Compile Include="Common\IPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\SalePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ILoginView.cs" />
     <Compile Include="Views\ISaleView.cs" />
-    <Compile Include="Views\IView.cs" />
+    <Compile Include="Common\IView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HappyCashier.Domain\HappyCashier.Domain.csproj">
@@ -76,6 +77,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

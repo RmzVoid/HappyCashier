@@ -1,23 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using HappyCashier.Domain.DataTransferObjects;
-using HappyCashier.Presenter;
+using HappyCashier.Presenter.DataTransferObjects;
 using HappyCashier.Presenter.Views;
 using HappyCashier.View.Dialogs;
-using Microsoft.Practices.Unity;
 
 namespace HappyCashier.View.Forms
 {
-	public partial class MainForm : Form, ISaleView
+	public partial class SaleForm : Form, ISaleView
 	{
+		public SaleForm(ApplicationContext context, Account account)
+		{
+			InitializeComponent();
+
+			// can't set up aligment of particular columns in designer
+			saleItemAmountColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+			saleItemAmountColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+			saleItemTotalColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+			saleItemTotalColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+			saleItemPriceColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+			saleItemPriceColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
+			Account = account;
+			_context = context;
+		}
+
 		public Document Document
 		{
 			get { return _document; }
@@ -30,52 +38,32 @@ namespace HappyCashier.View.Forms
 			set { _account = value; accountNameLabel.Text = value.Name; }
 		}
 
-		public int SaleId { get; set; }
 		public string GoodNameRequested { get { return inputTextBox.Text; } }
 
 		public event Action OpenSaleRequested;
 		public event Action CloseSaleRequested;
 		public event Action GoodInfoRequested;
 
-		public MainForm(IUnityContainer container, ApplicationContext context, Account account)
+		public void GoodInfoReturned(GoodDto goods)
 		{
-			_container = container;
-			_context = context;
+			if (_document == null)
+				Invoke(OpenSaleRequested);
 
-			InitializeComponent();
-
-			// can't set up aligment of particular columns in designer
-			saleItemAmountColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-			saleItemAmountColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-			saleItemTotalColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-			saleItemTotalColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-			saleItemPriceColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-			saleItemPriceColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-			Account = account;
-		}
-
-		public void GoodInfoReturned(GoodDto good)
-		{
 			GetDecimalDialog dialog = new GetDecimalDialog("Кол-во: ", 1);
 			decimal? amount = dialog.RequestUserValue();
 
 			if (amount.HasValue)
 			{
-				// here we able to check if good already present in datagrid and modify row
-				saleItemsDataGrid.Rows.Add(
-					good.Name,
-					amount.Value.ToString("N3"),
-					Math.Round(amount.Value * good.Price, 2).ToString("N2"),
-					good.Id.ToString(),
-					good.Price.ToString("N2"));
+				_document.Positions.Add(
+					new Document.Goods()
+					{
+						Id = goods.Id,
+						Name = goods.Name,
+						Price = goods.Price,
+						Quantity = amount.Value
+					});
 
-				saleTotalLabel.Text = saleItemsDataGrid
-					.Rows
-					.Cast<DataGridViewRow>()
-					.Sum(row => decimal.Parse(row.Cells["saleItemTotalColumn"].Value.ToString())).ToString("N2");
-
-				saleItemsCountLabel.Text = saleItemsDataGrid.Rows.Count.ToString();
+				onDocumentUpdate();
 
 				inputTextBox.Text = string.Empty;
 			}
@@ -88,17 +76,44 @@ namespace HappyCashier.View.Forms
 
 		public void ShowMe()
 		{
-			// open new sale document right before show form
-			Invoke(OpenSaleRequested);
-
 			_context.MainForm = this;
-
 			Show();
 		}
 
 		public void CloseMe()
 		{
-			Close();
+			base.Close();
+		}
+
+		// Updates values of all controls with values from _document
+		private void onDocumentUpdate()
+		{
+			if (_document == null)
+				return;
+
+			documentIdLabel.Text = _document.Id.ToString();
+			documentTypeLabel.Text = "Продажа";
+
+			// save selected item index in goods list
+			int selectedSaleItemIndex = saleItemsDataGrid.SelectedRows.Count > 0 ? saleItemsDataGrid.SelectedRows[0].Index : int.MaxValue;
+			saleItemsDataGrid.Rows.Clear();
+
+			foreach(var item in _document.Positions)
+			{
+				saleItemsDataGrid.Rows.Add(
+					item.Name,
+					item.Quantity.ToString("N3"),
+					item.Total.ToString("N2"),
+					item.Id.ToString(),
+					item.Price.ToString("N2"));
+			}
+
+			if (selectedSaleItemIndex < saleItemsDataGrid.Rows.Count)
+				saleItemsDataGrid.Rows[selectedSaleItemIndex].Selected = true;
+
+			saleTotalLabel.Text = _document.Total.ToString("N2");
+
+			saleItemsCountLabel.Text = _document.Positions.Count.ToString();
 		}
 
 		private void Invoke(Action action)
@@ -161,9 +176,8 @@ namespace HappyCashier.View.Forms
 			}
 		}
 
-		private IUnityContainer _container;
-		private ApplicationContext _context;
-		private Account _account;
-		private Document _document;
+		private readonly ApplicationContext _context;
+		private Account _account = null;
+		private Document _document = null;
 	}
 }

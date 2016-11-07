@@ -11,7 +11,8 @@ namespace HappyCashier.Domain.Models
 	public interface IAccountModel
 	{
 		string GetRecentActive();
-		IEnumerable<string> GetAccountList();
+		ISet<string> GetAccountList();
 		Account GetAccount(string account, string password);
+		void UpdateAccountInfo(Account account);
 	}
 }

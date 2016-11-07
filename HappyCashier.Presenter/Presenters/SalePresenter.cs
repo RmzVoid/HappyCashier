@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-using HappyCashier.Domain.DataTransferObjects;
+﻿using HappyCashier.Domain.DataTransferObjects;
 using HappyCashier.Domain.Models;
+using HappyCashier.Presenter.Common;
+using HappyCashier.Presenter.DataTransferObjects;
 using HappyCashier.Presenter.Views;
 
 namespace HappyCashier.Presenter.Presenters
 {
-	public class SalePresenter : IPresenter
+	public class SalePresenter : BasePresenter<ISaleView, Account>
 	{
-		public SalePresenter(ISaleView view, ISaleModel model)
+		public SalePresenter(IApplicationController controller, ISaleView view, ISaleModel model)
+			: base(controller, view)
 		{
-			_view = view;
 			_model = model;
 
 			_view.GoodInfoRequested += goodInfoRequested;
@@ -20,20 +18,19 @@ namespace HappyCashier.Presenter.Presenters
 			_view.OpenSaleRequested += openSaleRequested;
 		}
 
-		public void Run()
+		public override void Run(Account account)
 		{
+			_view.Account = account;
 			_view.ShowMe();
 		}
 
 		private void openSaleRequested()
 		{
-			Document document = new Document(_model.OpenSale(_view.Account.Id));
-
+			_view.Document = new Document(_model.OpenSale(_view.Account.Id));
 		}
 
 		private void closeSaleRequested()
 		{
-			_model.CloseSale(new SaleDto() { Id = _view.SaleId });
 		}
 
 		private void goodInfoRequested()
@@ -48,7 +45,6 @@ namespace HappyCashier.Presenter.Presenters
 				_view.ShowError("Товар '" + _view.GoodNameRequested + "' не найден");
 		}
 
-		private ISaleView _view;
 		private ISaleModel _model;
 	}
 }

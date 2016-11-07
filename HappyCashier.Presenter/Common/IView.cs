@@ -1,4 +1,4 @@
-﻿namespace HappyCashier.Presenter.Views
+﻿namespace HappyCashier.Presenter.Common
 {
 	public interface IView
 	{

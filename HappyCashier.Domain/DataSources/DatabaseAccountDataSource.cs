@@ -21,11 +21,11 @@ namespace HappyCashier.Domain.DataSources
 				.FirstOrDefault();
 		}
 
-		public IEnumerable<string> GetAccountList()
+		public ISet<string> GetAccountList()
 		{
-			return _context.Account
+			return new HashSet<string>(_context.Account
 				.Select(a => a.Name)
-				.ToList();
+				.ToList());
 		}
 
 		public void Create(string account, string password)
@@ -44,6 +44,20 @@ namespace HappyCashier.Domain.DataSources
 		{
 			// usually account name case insensitive, but now won't use CI comparing
 			return _context.Account.Where(a => a.Name == account && a.Password == password).FirstOrDefault();
+		}
+
+		public void UpdateAccountInfo(Account account)
+		{
+			var accountToUpdate = _context.Entry<Account>(account);
+
+			if (accountToUpdate != null)
+			{
+				accountToUpdate.Entity.Name = account.Name;
+				accountToUpdate.Entity.Password = account.Password;
+				accountToUpdate.Entity.LastActivity = account.LastActivity;
+			}
+
+			_context.SaveChanges();
 		}
 
 		private DatabaseContext _context;

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HappyCashier.Presenter.DataTransferObjects
 {
-	public class SaleInfo
+	// object used in presenter/view transfer
+	public class Account
 	{
-		public int Id {get; set;}
-		public IEnumerable<SaleItem> Items { get; private set; }
-		public decimal Total { get { return Items.Sum(item => item.Total); } }
+		public int Id { get; set; }
+		public string Name { get; set; }
 	}
 }

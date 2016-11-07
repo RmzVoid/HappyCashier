@@ -1,23 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using HappyCashier.Domain.Models;
+using HappyCashier.Presenter.Common;
+using HappyCashier.Presenter.DataTransferObjects;
 using HappyCashier.Presenter.Views;
-using Microsoft.Practices.Unity;
 
 using AccountEntity = HappyCashier.Domain.Entities.Account;
 
 namespace HappyCashier.Presenter.Presenters
 {
-	public class LoginPresenter : IPresenter
+	public class LoginPresenter : BasePresenter<ILoginView>
 	{
-		public LoginPresenter(IUnityContainer container, ILoginView view, IAccountModel model)
+		public LoginPresenter(IApplicationController controller, ILoginView view, IAccountModel model)
+			: base(controller, view)
 		{
-			_view = view;
 			_model = model;
-			_container = container;
 
 			_view.RecentAccountRequested += () => GetRecentAccount();
 			_view.AccountListRequested += () => GetAccountsList();
@@ -40,11 +37,14 @@ namespace HappyCashier.Presenter.Presenters
 
 			if (account != null)
 			{
-				SalePresenter salePresenter = new SalePresenter(
-					_container.Resolve<ISaleView>(new ParameterOverride("account", new Account() { Id = account.Id, Name = account.Name })),
-					_container.Resolve<ISaleModel>());
+				account.LastActivity = DateTime.Now;
+				_model.UpdateAccountInfo(account);
 
-				salePresenter.Run();
+				_controller.Run<SalePresenter, Account>(new Account() 
+				{ 
+					Id = account.Id, 
+					Name = account.Name 
+				});
 
 				_view.CloseMe();
 			}
@@ -52,13 +52,6 @@ namespace HappyCashier.Presenter.Presenters
 				_view.ShowError("Вход неуспешен");
 		}
 
-		public void Run()
-		{
-			_view.ShowMe();
-		}
-
-		private ILoginView _view;
 		private IAccountModel _model;
-		private IUnityContainer _container;
 	}
 }

@@ -5,8 +5,9 @@ namespace HappyCashier.Domain.DataSources
 {
 	public interface IAccountDataSource
 	{
-		IEnumerable<string> GetAccountList();
+		ISet<string> GetAccountList();
 		string GetRecentActive();
 		Account GetAccount(string account, string password);
+		void UpdateAccountInfo(Account account);
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace HappyCashier.View.Forms
 {
-	partial class MainForm
+	partial class SaleForm
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -41,27 +41,27 @@
 			System.Windows.Forms.Label label6;
 			System.Windows.Forms.Label label5;
 			System.Windows.Forms.Panel panel4;
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.goodNameLabel = new System.Windows.Forms.Label();
 			this.saleItemTotalLabel = new System.Windows.Forms.Label();
 			this.saleItemAmountLabel = new System.Windows.Forms.Label();
 			this.goodPriceLabel = new System.Windows.Forms.Label();
 			this.goodIdLabel = new System.Windows.Forms.Label();
 			this.inputTextBox = new System.Windows.Forms.TextBox();
+			this.saleItemsCountLabel = new System.Windows.Forms.Label();
+			this.documentIdLabel = new System.Windows.Forms.Label();
+			this.documentTypeLabel = new System.Windows.Forms.Label();
 			this.saleTotalLabel = new System.Windows.Forms.Label();
 			this.currentTimeLabel = new System.Windows.Forms.Label();
 			this.accountNameLabel = new System.Windows.Forms.Label();
 			this.saleItemsDataGrid = new System.Windows.Forms.DataGridView();
-			this.currentTimeRefreshTimer = new System.Windows.Forms.Timer(this.components);
 			this.saleItemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.saleItemAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.saleItemTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.saleItemIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.saleItemPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.documentTypeLabel = new System.Windows.Forms.Label();
-			this.saleIdLabel = new System.Windows.Forms.Label();
-			this.saleItemsCountLabel = new System.Windows.Forms.Label();
+			this.currentTimeRefreshTimer = new System.Windows.Forms.Timer(this.components);
 			panel1 = new System.Windows.Forms.Panel();
 			label4 = new System.Windows.Forms.Label();
 			label3 = new System.Windows.Forms.Label();
@@ -218,7 +218,7 @@
 			// 
 			panel3.BackColor = System.Drawing.Color.DodgerBlue;
 			panel3.Controls.Add(this.saleItemsCountLabel);
-			panel3.Controls.Add(this.saleIdLabel);
+			panel3.Controls.Add(this.documentIdLabel);
 			panel3.Controls.Add(this.documentTypeLabel);
 			panel3.Controls.Add(this.saleTotalLabel);
 			panel3.Controls.Add(label8);
@@ -229,6 +229,36 @@
 			panel3.Name = "panel3";
 			panel3.Size = new System.Drawing.Size(837, 124);
 			panel3.TabIndex = 2;
+			// 
+			// saleItemsCountLabel
+			// 
+			this.saleItemsCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.saleItemsCountLabel.ForeColor = System.Drawing.SystemColors.Window;
+			this.saleItemsCountLabel.Location = new System.Drawing.Point(166, 79);
+			this.saleItemsCountLabel.Name = "saleItemsCountLabel";
+			this.saleItemsCountLabel.Size = new System.Drawing.Size(136, 23);
+			this.saleItemsCountLabel.TabIndex = 12;
+			this.saleItemsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// documentIdLabel
+			// 
+			this.documentIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.documentIdLabel.ForeColor = System.Drawing.SystemColors.Window;
+			this.documentIdLabel.Location = new System.Drawing.Point(166, 40);
+			this.documentIdLabel.Name = "documentIdLabel";
+			this.documentIdLabel.Size = new System.Drawing.Size(136, 23);
+			this.documentIdLabel.TabIndex = 11;
+			this.documentIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// documentTypeLabel
+			// 
+			this.documentTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.documentTypeLabel.ForeColor = System.Drawing.SystemColors.Window;
+			this.documentTypeLabel.Location = new System.Drawing.Point(166, 1);
+			this.documentTypeLabel.Name = "documentTypeLabel";
+			this.documentTypeLabel.Size = new System.Drawing.Size(136, 23);
+			this.documentTypeLabel.TabIndex = 10;
+			this.documentTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// saleTotalLabel
 			// 
@@ -326,14 +356,14 @@
 			this.saleItemsDataGrid.BackgroundColor = System.Drawing.Color.AliceBlue;
 			this.saleItemsDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
 			this.saleItemsDataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-			dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle7.BackColor = System.Drawing.Color.AliceBlue;
-			dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			dataGridViewCellStyle7.ForeColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.saleItemsDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
+			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			dataGridViewCellStyle1.ForeColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+			this.saleItemsDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this.saleItemsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.saleItemsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.saleItemNameColumn,
@@ -341,14 +371,14 @@
             this.saleItemTotalColumn,
             this.saleItemIdColumn,
             this.saleItemPriceColumn});
-			dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-			dataGridViewCellStyle8.BackColor = System.Drawing.Color.AliceBlue;
-			dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-			dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.DodgerBlue;
-			dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-			dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.saleItemsDataGrid.DefaultCellStyle = dataGridViewCellStyle8;
+			dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+			dataGridViewCellStyle2.BackColor = System.Drawing.Color.AliceBlue;
+			dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DodgerBlue;
+			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+			this.saleItemsDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
 			this.saleItemsDataGrid.GridColor = System.Drawing.Color.AliceBlue;
 			this.saleItemsDataGrid.Location = new System.Drawing.Point(13, 13);
 			this.saleItemsDataGrid.MultiSelect = false;
@@ -359,12 +389,6 @@
 			this.saleItemsDataGrid.Size = new System.Drawing.Size(837, 304);
 			this.saleItemsDataGrid.TabIndex = 1;
 			this.saleItemsDataGrid.SelectionChanged += new System.EventHandler(this.saleItemsDataGrid_SelectionChanged);
-			// 
-			// currentTimeRefreshTimer
-			// 
-			this.currentTimeRefreshTimer.Enabled = true;
-			this.currentTimeRefreshTimer.Interval = 1000;
-			this.currentTimeRefreshTimer.Tick += new System.EventHandler(this.currentTimeRefreshTimer_Tick);
 			// 
 			// saleItemNameColumn
 			// 
@@ -403,37 +427,13 @@
 			this.saleItemPriceColumn.Visible = false;
 			this.saleItemPriceColumn.Width = 81;
 			// 
-			// documentTypeLabel
+			// currentTimeRefreshTimer
 			// 
-			this.documentTypeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.documentTypeLabel.ForeColor = System.Drawing.SystemColors.Window;
-			this.documentTypeLabel.Location = new System.Drawing.Point(166, 1);
-			this.documentTypeLabel.Name = "documentTypeLabel";
-			this.documentTypeLabel.Size = new System.Drawing.Size(136, 23);
-			this.documentTypeLabel.TabIndex = 10;
-			this.documentTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.currentTimeRefreshTimer.Enabled = true;
+			this.currentTimeRefreshTimer.Interval = 1000;
+			this.currentTimeRefreshTimer.Tick += new System.EventHandler(this.currentTimeRefreshTimer_Tick);
 			// 
-			// saleIdLabel
-			// 
-			this.saleIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.saleIdLabel.ForeColor = System.Drawing.SystemColors.Window;
-			this.saleIdLabel.Location = new System.Drawing.Point(166, 40);
-			this.saleIdLabel.Name = "saleIdLabel";
-			this.saleIdLabel.Size = new System.Drawing.Size(136, 23);
-			this.saleIdLabel.TabIndex = 11;
-			this.saleIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// saleItemsCountLabel
-			// 
-			this.saleItemsCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.saleItemsCountLabel.ForeColor = System.Drawing.SystemColors.Window;
-			this.saleItemsCountLabel.Location = new System.Drawing.Point(166, 79);
-			this.saleItemsCountLabel.Name = "saleItemsCountLabel";
-			this.saleItemsCountLabel.Size = new System.Drawing.Size(136, 23);
-			this.saleItemsCountLabel.TabIndex = 12;
-			this.saleItemsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-			// 
-			// MainForm
+			// SaleForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -447,7 +447,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.KeyPreview = true;
 			this.MaximizeBox = false;
-			this.Name = "MainForm";
+			this.Name = "SaleForm";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Счастливый кассир 1.0";
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
@@ -480,7 +480,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemIdColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemPriceColumn;
 		private System.Windows.Forms.Label saleItemsCountLabel;
-		private System.Windows.Forms.Label saleIdLabel;
+		private System.Windows.Forms.Label documentIdLabel;
 		private System.Windows.Forms.Label documentTypeLabel;
 	}
 }
