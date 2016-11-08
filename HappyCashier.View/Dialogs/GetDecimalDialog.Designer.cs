@@ -81,7 +81,7 @@
 			this.Name = "GetDecimalDialog";
 			this.ShowInTaskbar = false;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "ChooseAmountDialog";
+			this.Text = "";
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GetDecimalDialog_KeyDown);
 			this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.GetDecimalDialog_KeyPress);
 			panel1.ResumeLayout(false);

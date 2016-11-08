@@ -7,6 +7,6 @@ namespace HappyCashier.Domain.Entities
 		public Sale Sale { get; set; }
 		public Good Good { get; set; }
 		public decimal Price { get; set; }
-		public decimal Amount { get; set; }
+		public decimal Quantity { get; set; }
 	}
 }

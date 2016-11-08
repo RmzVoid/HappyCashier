@@ -5,7 +5,7 @@ using HappyCashier.Presenter.Common;
 using HappyCashier.Presenter.DataTransferObjects;
 using HappyCashier.Presenter.Views;
 
-using AccountEntity = HappyCashier.Domain.Entities.Account;
+using AccountModel = HappyCashier.Domain.Entities.Account;
 
 namespace HappyCashier.Presenter.Presenters
 {
@@ -33,7 +33,7 @@ namespace HappyCashier.Presenter.Presenters
 
 		private void Login()
 		{
-			AccountEntity account = _model.GetAccount(_view.AccountName, _view.AccountPassword);
+			AccountModel account = _model.GetAccount(_view.AccountName, _view.AccountPassword);
 
 			if (account != null)
 			{

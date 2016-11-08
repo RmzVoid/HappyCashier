@@ -1,6 +1,5 @@
 ﻿using System;
 
-using HappyCashier.Domain.DataTransferObjects;
 using HappyCashier.Presenter.Common;
 using HappyCashier.Presenter.DataTransferObjects;
 
@@ -12,7 +11,7 @@ namespace HappyCashier.Presenter.Views
 		Document Document { get; set; }
 		string GoodNameRequested { get; }
 
-		void GoodInfoReturned(GoodDto good);
+		void GoodInfoReturned(Goods good);
 
 		void ShowError(string message);
 

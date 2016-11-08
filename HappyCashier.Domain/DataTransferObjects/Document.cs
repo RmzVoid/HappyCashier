@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace HappyCashier.Domain.DataTransferObjects
 {
-	public class GoodDto
+	public class Document
 	{
 		public int Id { get; set; }
-		public string Name { get; set; }
-		public decimal Price { get; set; }
+		public IEnumerable<Position> Positions { get; set; }
 	}
 }

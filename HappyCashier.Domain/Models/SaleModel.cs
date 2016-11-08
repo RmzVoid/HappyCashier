@@ -21,12 +21,12 @@ namespace HappyCashier.Domain.Models
 			return _dataSource.OpenSale(accountId);
 		}
 
-		public void CloseSale(SaleDto saleToClose)
+		public void CloseSale(Document saleToClose)
 		{
 			_dataSource.CloseSale(saleToClose);
 		}
 
-		public GoodDto GetGood(string name)
+		public Goods GetGood(string name)
 		{
 			return _dataSource.GetGood(name);
 		}

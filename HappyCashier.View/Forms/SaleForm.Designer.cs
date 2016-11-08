@@ -45,7 +45,7 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.goodNameLabel = new System.Windows.Forms.Label();
 			this.saleItemTotalLabel = new System.Windows.Forms.Label();
-			this.saleItemAmountLabel = new System.Windows.Forms.Label();
+			this.saleItemQuantityLabel = new System.Windows.Forms.Label();
 			this.goodPriceLabel = new System.Windows.Forms.Label();
 			this.goodIdLabel = new System.Windows.Forms.Label();
 			this.inputTextBox = new System.Windows.Forms.TextBox();
@@ -57,7 +57,7 @@
 			this.accountNameLabel = new System.Windows.Forms.Label();
 			this.saleItemsDataGrid = new System.Windows.Forms.DataGridView();
 			this.saleItemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-			this.saleItemAmountColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+			this.saleItemQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.saleItemTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.saleItemIdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.saleItemPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,7 +86,7 @@
 			panel1.BackColor = System.Drawing.Color.DodgerBlue;
 			panel1.Controls.Add(this.goodNameLabel);
 			panel1.Controls.Add(this.saleItemTotalLabel);
-			panel1.Controls.Add(this.saleItemAmountLabel);
+			panel1.Controls.Add(this.saleItemQuantityLabel);
 			panel1.Controls.Add(this.goodPriceLabel);
 			panel1.Controls.Add(this.goodIdLabel);
 			panel1.Controls.Add(label4);
@@ -118,15 +118,15 @@
 			this.saleItemTotalLabel.TabIndex = 7;
 			this.saleItemTotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// saleItemAmountLabel
+			// saleItemQuantityLabel
 			// 
-			this.saleItemAmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.saleItemAmountLabel.ForeColor = System.Drawing.SystemColors.Window;
-			this.saleItemAmountLabel.Location = new System.Drawing.Point(497, 2);
-			this.saleItemAmountLabel.Name = "saleItemAmountLabel";
-			this.saleItemAmountLabel.Size = new System.Drawing.Size(136, 23);
-			this.saleItemAmountLabel.TabIndex = 6;
-			this.saleItemAmountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.saleItemQuantityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.saleItemQuantityLabel.ForeColor = System.Drawing.SystemColors.Window;
+			this.saleItemQuantityLabel.Location = new System.Drawing.Point(497, 2);
+			this.saleItemQuantityLabel.Name = "saleItemQuantityLabel";
+			this.saleItemQuantityLabel.Size = new System.Drawing.Size(136, 23);
+			this.saleItemQuantityLabel.TabIndex = 6;
+			this.saleItemQuantityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// goodPriceLabel
 			// 
@@ -367,7 +367,7 @@
 			this.saleItemsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.saleItemsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.saleItemNameColumn,
-            this.saleItemAmountColumn,
+            this.saleItemQuantityColumn,
             this.saleItemTotalColumn,
             this.saleItemIdColumn,
             this.saleItemPriceColumn});
@@ -397,12 +397,12 @@
 			this.saleItemNameColumn.Name = "saleItemNameColumn";
 			this.saleItemNameColumn.ReadOnly = true;
 			// 
-			// saleItemAmountColumn
+			// saleItemQuantityColumn
 			// 
-			this.saleItemAmountColumn.HeaderText = "Количество";
-			this.saleItemAmountColumn.Name = "saleItemAmountColumn";
-			this.saleItemAmountColumn.ReadOnly = true;
-			this.saleItemAmountColumn.Width = 150;
+			this.saleItemQuantityColumn.HeaderText = "Количество";
+			this.saleItemQuantityColumn.Name = "saleItemQuantityColumn";
+			this.saleItemQuantityColumn.ReadOnly = true;
+			this.saleItemQuantityColumn.Width = 150;
 			// 
 			// saleItemTotalColumn
 			// 
@@ -467,7 +467,7 @@
 		private System.Windows.Forms.TextBox inputTextBox;
 		private System.Windows.Forms.Label goodNameLabel;
 		private System.Windows.Forms.Label saleItemTotalLabel;
-		private System.Windows.Forms.Label saleItemAmountLabel;
+		private System.Windows.Forms.Label saleItemQuantityLabel;
 		private System.Windows.Forms.Label goodPriceLabel;
 		private System.Windows.Forms.Label goodIdLabel;
 		private System.Windows.Forms.Label saleTotalLabel;
@@ -475,7 +475,7 @@
 		private System.Windows.Forms.Label accountNameLabel;
 		private System.Windows.Forms.Timer currentTimeRefreshTimer;
 		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemNameColumn;
-		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemAmountColumn;
+		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemQuantityColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemTotalColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemIdColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemPriceColumn;

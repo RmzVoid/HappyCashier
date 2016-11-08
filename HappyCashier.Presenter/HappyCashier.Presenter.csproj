@@ -61,6 +61,8 @@
     <Compile Include="DataTransferObjects\Document.cs" />
     <Compile Include="Common\BasePresenter.cs" />
     <Compile Include="Common\IPresenter.cs" />
+    <Compile Include="DataTransferObjects\Goods.cs" />
+    <Compile Include="DataTransferObjects\Position.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\SalePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -40,14 +40,17 @@ namespace HappyCashier.Domain.DatabaseLayer
 				.Property(p => p.Price)
 				.IsRequired().HasPrecision(8, 2);
 			modelBuilder.Entity<Entities.Good>()
-				.Property(p => p.Amount)
+				.Property(p => p.Quantity)
 				.IsRequired().HasPrecision(8, 3);
 
 			modelBuilder.Entity<Entities.Sale>()
 				.HasKey<int>(k => k.Id);
 			modelBuilder.Entity<Entities.Sale>()
-				.Property(p => p.DateTime)
+				.Property(p => p.DateTimeOpen)
 				.IsRequired();
+			modelBuilder.Entity<Entities.Sale>()
+				.Property(p => p.DateTimeClose)
+				.IsOptional();
 
 			modelBuilder.Entity<Entities.SaleItem>()
 				.HasKey<int>(k => k.Id);
@@ -56,7 +59,7 @@ namespace HappyCashier.Domain.DatabaseLayer
 				.IsRequired()
 				.HasPrecision(8, 2);
 			modelBuilder.Entity<Entities.SaleItem>()
-				.Property(p => p.Amount)
+				.Property(p => p.Quantity)
 				.IsRequired()
 				.HasPrecision(8, 3);
 		}

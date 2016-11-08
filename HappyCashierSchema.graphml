@@ -575,7 +575,7 @@ LastActivity</y:AttributeLabel>
             <y:AttributeLabel>Id
 Name
 Price
-Amount</y:AttributeLabel>
+Quantity</y:AttributeLabel>
             <y:MethodLabel/>
           </y:UML>
         </y:UMLClassNode>
@@ -626,7 +626,7 @@ SaleItems</y:AttributeLabel>
 SaleId
 GoodId
 Price
-Amount</y:AttributeLabel>
+Quantity</y:AttributeLabel>
             <y:MethodLabel/>
           </y:UML>
         </y:UMLClassNode>
@@ -720,7 +720,7 @@ AccountList</y:AttributeLabel>
           <y:UML clipContent="true" constraint="" omitDetails="false" stereotype="" use3DEffect="true">
             <y:AttributeLabel>GoodId
 Price
-Amount
+Quantity
 Total</y:AttributeLabel>
             <y:MethodLabel/>
           </y:UML>

@@ -5,7 +5,7 @@ using HappyCashier.Domain.Entities;
 
 namespace HappyCashier.Domain.DatabaseLayer
 {
-	class DatabaseInitializer<T> : CreateDatabaseIfNotExists<T>
+	class DatabaseInitializer<T> : DropCreateDatabaseIfModelChanges<T>
 		where T : DatabaseContext
 	{
 		protected override void Seed(T context)
@@ -19,15 +19,15 @@ namespace HappyCashier.Domain.DatabaseLayer
 
 			List<Good> goods = new List<Good>
 			{
-				new Good(){ Name = "Чеснок", Amount = 15.807m, Price = 19.80m },
-				new Good(){ Name = "Арбуз", Amount = 25.910m, Price = 29.90m },
-				new Good(){ Name = "Картофель", Amount = 45.342m, Price = 13.70m },
-				new Good(){ Name = "Мясо", Amount = 12.677m, Price = 289.10m },
-				new Good(){ Name = "Печенье", Amount = 3.233m, Price = 43.60m },
-				new Good(){ Name = "Водка", Amount = 20m, Price = 405.20m },
-				new Good(){ Name = "Лимонад", Amount = 40m, Price = 28.40m },
-				new Good(){ Name = "Сигареты", Amount = 34m, Price = 90.90m },
-				new Good(){ Name = "Сыр", Amount = 13m, Price = 388.45m },
+				new Good(){ Name = "Чеснок", Quantity = 15.807m, Price = 19.80m },
+				new Good(){ Name = "Арбуз", Quantity = 25.910m, Price = 29.90m },
+				new Good(){ Name = "Картофель", Quantity = 45.342m, Price = 13.70m },
+				new Good(){ Name = "Мясо", Quantity = 12.677m, Price = 289.10m },
+				new Good(){ Name = "Печенье", Quantity = 3.233m, Price = 43.60m },
+				new Good(){ Name = "Водка", Quantity = 20m, Price = 405.20m },
+				new Good(){ Name = "Лимонад", Quantity = 40m, Price = 28.40m },
+				new Good(){ Name = "Сигареты", Quantity = 34m, Price = 90.90m },
+				new Good(){ Name = "Сыр", Quantity = 13m, Price = 388.45m },
 			};
 
 			context.Account.AddRange(accounts);

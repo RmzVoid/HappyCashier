@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
 
-using HappyCashier.Domain.DataTransferObjects;
 using HappyCashier.Presenter.DataTransferObjects;
 using HappyCashier.Presenter.Views;
 using HappyCashier.View.Dialogs;
+
+using DocumentObject = HappyCashier.Presenter.DataTransferObjects.Document;
 
 namespace HappyCashier.View.Forms
 {
@@ -15,8 +16,8 @@ namespace HappyCashier.View.Forms
 			InitializeComponent();
 
 			// can't set up aligment of particular columns in designer
-			saleItemAmountColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-			saleItemAmountColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+			saleItemQuantityColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+			saleItemQuantityColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 			saleItemTotalColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 			saleItemTotalColumn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 			saleItemPriceColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -44,23 +45,23 @@ namespace HappyCashier.View.Forms
 		public event Action CloseSaleRequested;
 		public event Action GoodInfoRequested;
 
-		public void GoodInfoReturned(GoodDto goods)
+		public void GoodInfoReturned(Goods goods)
 		{
 			if (_document == null)
 				Invoke(OpenSaleRequested);
 
 			GetDecimalDialog dialog = new GetDecimalDialog("Кол-во: ", 1);
-			decimal? amount = dialog.RequestUserValue();
+			decimal? quantity = dialog.RequestUserValue();
 
-			if (amount.HasValue)
+			if (quantity.HasValue && quantity.Value > 0)
 			{
 				_document.Positions.Add(
-					new Document.Goods()
+					new Position()
 					{
 						Id = goods.Id,
 						Name = goods.Name,
 						Price = goods.Price,
-						Quantity = amount.Value
+						Quantity = quantity.Value
 					});
 
 				onDocumentUpdate();
@@ -169,7 +170,7 @@ namespace HappyCashier.View.Forms
 			if (saleItemsDataGrid.SelectedRows.Count > 0)
 			{
 				goodNameLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[0].Value.ToString();
-				saleItemAmountLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[1].Value.ToString();
+				saleItemQuantityLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[1].Value.ToString();
 				saleItemTotalLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[2].Value.ToString();
 				goodIdLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[3].Value.ToString();
 				goodPriceLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[4].Value.ToString();
