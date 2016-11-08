@@ -43,6 +43,8 @@ namespace HappyCashier.Presenter.Presenters
 			DocumentModel saleToClose = new DocumentModel();
 
 			saleToClose.Id = _view.Document.Id;
+			saleToClose.DateTimeOpen = _view.Document.OpenTime;
+			saleToClose.DateTimeClose = _view.Document.CloseTime;
 			saleToClose.Positions = _view.Document.Positions
 				.Select<PositionObject, PositionModel>(p => new PositionModel() 
 				{ 
@@ -51,7 +53,7 @@ namespace HappyCashier.Presenter.Presenters
 					Quantity = p.Quantity
 				});
 
-			//_model.CloseSale(_view.Document);
+			_model.CloseSale(saleToClose);
 		}
 
 		private void goodInfoRequested()

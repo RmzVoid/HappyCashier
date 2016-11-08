@@ -16,56 +16,56 @@ namespace HappyCashier.Domain.DatabaseLayer
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Entities.Account>()
+			modelBuilder.Entity<Account>()
 				.HasKey<int>(k => k.Id);
-			modelBuilder.Entity<Entities.Account>()
+			modelBuilder.Entity<Account>()
 				.Property(p => p.Name)
 				.IsRequired()
 				.HasMaxLength(64);
-			modelBuilder.Entity<Entities.Account>()
+			modelBuilder.Entity<Account>()
 				.Property(p => p.Password)
 				.IsRequired()
 				.HasMaxLength(16);
-			modelBuilder.Entity<Entities.Account>()
+			modelBuilder.Entity<Account>()
 				.Property(p => p.LastActivity)
 				.IsOptional();
 
-			modelBuilder.Entity<Entities.Good>()
+			modelBuilder.Entity<Goods>()
 				.HasKey<int>(k => k.Id);
-			modelBuilder.Entity<Entities.Good>()
+			modelBuilder.Entity<Goods>()
 				.Property(p => p.Name)
 				.IsRequired()
 				.HasMaxLength(64);
-			modelBuilder.Entity<Entities.Good>()
+			modelBuilder.Entity<Goods>()
 				.Property(p => p.Price)
 				.IsRequired().HasPrecision(8, 2);
-			modelBuilder.Entity<Entities.Good>()
+			modelBuilder.Entity<Goods>()
 				.Property(p => p.Quantity)
 				.IsRequired().HasPrecision(8, 3);
 
-			modelBuilder.Entity<Entities.Sale>()
+			modelBuilder.Entity<Sale>()
 				.HasKey<int>(k => k.Id);
-			modelBuilder.Entity<Entities.Sale>()
+			modelBuilder.Entity<Sale>()
 				.Property(p => p.DateTimeOpen)
-				.IsRequired();
-			modelBuilder.Entity<Entities.Sale>()
+				.IsOptional();
+			modelBuilder.Entity<Sale>()
 				.Property(p => p.DateTimeClose)
 				.IsOptional();
 
-			modelBuilder.Entity<Entities.SaleItem>()
+			modelBuilder.Entity<SaleItem>()
 				.HasKey<int>(k => k.Id);
-			modelBuilder.Entity<Entities.SaleItem>()
+			modelBuilder.Entity<SaleItem>()
 				.Property(p => p.Price)
 				.IsRequired()
 				.HasPrecision(8, 2);
-			modelBuilder.Entity<Entities.SaleItem>()
+			modelBuilder.Entity<SaleItem>()
 				.Property(p => p.Quantity)
 				.IsRequired()
 				.HasPrecision(8, 3);
 		}
 
 		public DbSet<Account> Account { get; set; }
-		public DbSet<Good> Good { get; set; }
+		public DbSet<Goods> Goods { get; set; }
 		public DbSet<Sale> Sale { get; set; }
 		public DbSet<SaleItem> SaleItem { get; set; }
 	}

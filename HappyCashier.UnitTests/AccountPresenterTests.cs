@@ -12,11 +12,12 @@ using HappyCashier.Presenter.Presenters;
 using HappyCashier.Domain.Entities;
 using HappyCashier.View.Forms;
 
-using AccountEntity = HappyCashier.Domain.Entities.Account;
-using AccountObject = HappyCashier.Presenter.DataTransferObjects.Account;
 using HappyCashier.Domain.DatabaseLayer;
 using HappyCashier.Domain.DataSources;
 using HappyCashier.Presenter.Common;
+
+using AccountEntity = HappyCashier.Domain.Entities.Account;
+using AccountObject = HappyCashier.Presenter.DataTransferObjects.Account;
 
 namespace HappyCashier.Test
 {

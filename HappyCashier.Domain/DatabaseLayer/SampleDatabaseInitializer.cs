@@ -17,21 +17,21 @@ namespace HappyCashier.Domain.DatabaseLayer
 				new Account() { Name = "Петя", Password = "11111" },
 			};
 
-			List<Good> goods = new List<Good>
+			List<Goods> goods = new List<Goods>
 			{
-				new Good(){ Name = "Чеснок", Quantity = 15.807m, Price = 19.80m },
-				new Good(){ Name = "Арбуз", Quantity = 25.910m, Price = 29.90m },
-				new Good(){ Name = "Картофель", Quantity = 45.342m, Price = 13.70m },
-				new Good(){ Name = "Мясо", Quantity = 12.677m, Price = 289.10m },
-				new Good(){ Name = "Печенье", Quantity = 3.233m, Price = 43.60m },
-				new Good(){ Name = "Водка", Quantity = 20m, Price = 405.20m },
-				new Good(){ Name = "Лимонад", Quantity = 40m, Price = 28.40m },
-				new Good(){ Name = "Сигареты", Quantity = 34m, Price = 90.90m },
-				new Good(){ Name = "Сыр", Quantity = 13m, Price = 388.45m },
+				new Goods(){ Name = "Чеснок", Quantity = 15.807m, Price = 19.80m },
+				new Goods(){ Name = "Арбуз", Quantity = 25.910m, Price = 29.90m },
+				new Goods(){ Name = "Картофель", Quantity = 45.342m, Price = 13.70m },
+				new Goods(){ Name = "Мясо", Quantity = 12.677m, Price = 289.10m },
+				new Goods(){ Name = "Печенье", Quantity = 3.233m, Price = 43.60m },
+				new Goods(){ Name = "Водка", Quantity = 20m, Price = 405.20m },
+				new Goods(){ Name = "Лимонад", Quantity = 40m, Price = 28.40m },
+				new Goods(){ Name = "Сигареты", Quantity = 34m, Price = 90.90m },
+				new Goods(){ Name = "Сыр", Quantity = 13m, Price = 388.45m },
 			};
 
 			context.Account.AddRange(accounts);
-			context.Good.AddRange(goods);
+			context.Goods.AddRange(goods);
 			context.SaveChanges();
 
 			base.Seed(context);

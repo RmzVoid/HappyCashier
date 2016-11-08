@@ -6,6 +6,9 @@ using HappyCashier.Domain.DatabaseLayer;
 using HappyCashier.Domain.DataTransferObjects;
 using HappyCashier.Domain.Entities;
 
+using GoodsObject = HappyCashier.Domain.DataTransferObjects.Goods;
+using GoodsModel = HappyCashier.Domain.Entities.Goods;
+
 namespace HappyCashier.Domain.DataSources
 {
 	public class DatabaseSaleDataSource : ISaleDataSource
@@ -25,7 +28,6 @@ namespace HappyCashier.Domain.DataSources
 			Sale sale = new Sale()
 				{
 					Account = account,
-					DateTimeOpen = DateTime.Now,
 					SaleItems = new List<SaleItem>()
 				};
 
@@ -42,28 +44,34 @@ namespace HappyCashier.Domain.DataSources
 			if (sale == null)
 				throw new NullReferenceException("sale is null");
 
-			sale.DateTimeClose = DateTime.Now;
+			sale.DateTimeOpen = saleToClose.DateTimeOpen;
+			sale.DateTimeClose = saleToClose.DateTimeClose;
 
 			foreach (var item in saleToClose.Positions)
+			{
+				GoodsModel goods = _context.Goods.Find(item.Id);
+
 				sale.SaleItems.Add(new SaleItem()
 				{
-					Sale = sale,
-					Good = new Good() { Id = item.Id},
+					Goods = goods,
 					Price = item.Price,
 					Quantity = item.Quantity
 				});
 
+				goods.Quantity -= item.Quantity;
+			}
+
 			_context.SaveChanges();
 		}
 
-		public Goods GetGood(string name)
+		public GoodsObject GetGood(string name)
 		{
-			Good good = _context.Good.Where(g => g.Name == name).FirstOrDefault();
+			GoodsModel good = _context.Goods.Where(g => g.Name == name).FirstOrDefault();
 
 			if(good == null)
 				return null;
 
-			return new Goods() { Id = good.Id, Name = good.Name, Price = good.Price };
+			return new GoodsObject() { Id = good.Id, Name = good.Name, Price = good.Price };
 		}
 
 		private DatabaseContext _context;

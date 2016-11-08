@@ -138,7 +138,10 @@ namespace HappyCashier.View.Forms
 			if(e.KeyCode == Keys.Return)
 			{
 				if (string.IsNullOrWhiteSpace(inputTextBox.Text))
+				{
+					Document.CloseTime = DateTime.Now;
 					Invoke(CloseSaleRequested);
+				}
 				else
 					Invoke(GoodInfoRequested);
 
