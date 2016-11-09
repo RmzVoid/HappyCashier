@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 
 using NSubstitute;
 using NUnit.Framework;
-using Microsoft.Practices.Unity;
 
 using HappyCashier.Domain.Models;
 using HappyCashier.Presenter.Views;
 using HappyCashier.Presenter.Presenters;
-using HappyCashier.Domain.Entities;
-using HappyCashier.View.Forms;
 
-using HappyCashier.Domain.DatabaseLayer;
-using HappyCashier.Domain.DataSources;
 using HappyCashier.Presenter.Common;
 
 using AccountEntity = HappyCashier.Domain.Entities.Account;

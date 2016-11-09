@@ -7,13 +7,11 @@ using NUnit.Framework;
 using HappyCashier.Domain.Models;
 using HappyCashier.Presenter.Common;
 using HappyCashier.Presenter.Views;
-using HappyCashier.Domain.DataTransferObjects;
 using HappyCashier.Presenter.Presenters;
 using HappyCashier.Presenter.DataTransferObjects;
 
 using GoodsModel = HappyCashier.Domain.DataTransferObjects.Goods;
 using GoodsObject = HappyCashier.Presenter.DataTransferObjects.Goods;
-using PositionModel = HappyCashier.Domain.DataTransferObjects.Position;
 using PositionObject = HappyCashier.Presenter.DataTransferObjects.Position;
 using DocumentModel = HappyCashier.Domain.DataTransferObjects.Document;
 using DocumentObject = HappyCashier.Presenter.DataTransferObjects.Document;

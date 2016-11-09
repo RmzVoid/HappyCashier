@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
 using System.Windows.Forms;
 
 using HappyCashier.Presenter.DataTransferObjects;
 using HappyCashier.Presenter.Views;
 using HappyCashier.View.Dialogs;
 
-using DocumentObject = HappyCashier.Presenter.DataTransferObjects.Document;
 
 namespace HappyCashier.View.Forms
 {

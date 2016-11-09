@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 
-using HappyCashier.Domain.DataTransferObjects;
 using HappyCashier.Domain.Models;
 using HappyCashier.Presenter.Common;
 using HappyCashier.Presenter.DataTransferObjects;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HappyCashier.Presenter.DataTransferObjects
+﻿namespace HappyCashier.Presenter.DataTransferObjects
 {
 	// object used in presenter/view transfer
 	public class Account

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HappyCashier.Domain.Entities
+﻿namespace HappyCashier.Domain.Entities
 {
 	public class SaleItem : EntityBase
 	{

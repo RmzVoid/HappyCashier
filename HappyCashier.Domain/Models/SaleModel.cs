@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 using HappyCashier.Domain.DataSources;
 using HappyCashier.Domain.DataTransferObjects;

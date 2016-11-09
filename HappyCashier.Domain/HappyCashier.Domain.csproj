@@ -65,7 +65,6 @@
     <Compile Include="Entities\SaleItem.cs" />
     <Compile Include="Models\AccountModel.cs" />
     <Compile Include="Models\IAccountModel.cs" />
-    <Compile Include="Models\IGoodModel.cs" />
     <Compile Include="Models\ISaleModel.cs" />
     <Compile Include="Models\SaleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
