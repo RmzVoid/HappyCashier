@@ -44,18 +44,18 @@
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
 			System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
 			this.goodNameLabel = new System.Windows.Forms.Label();
-			this.saleItemTotalLabel = new System.Windows.Forms.Label();
-			this.saleItemQuantityLabel = new System.Windows.Forms.Label();
+			this.positionTotalLabel = new System.Windows.Forms.Label();
+			this.positionQuantityLabel = new System.Windows.Forms.Label();
 			this.goodPriceLabel = new System.Windows.Forms.Label();
 			this.goodIdLabel = new System.Windows.Forms.Label();
 			this.inputTextBox = new System.Windows.Forms.TextBox();
-			this.saleItemsCountLabel = new System.Windows.Forms.Label();
+			this.documentPositionsCountLabel = new System.Windows.Forms.Label();
 			this.documentIdLabel = new System.Windows.Forms.Label();
 			this.documentTypeLabel = new System.Windows.Forms.Label();
-			this.saleTotalLabel = new System.Windows.Forms.Label();
+			this.documentTotalLabel = new System.Windows.Forms.Label();
 			this.currentTimeLabel = new System.Windows.Forms.Label();
 			this.accountNameLabel = new System.Windows.Forms.Label();
-			this.saleItemsDataGrid = new System.Windows.Forms.DataGridView();
+			this.documentPositionsDataGrid = new System.Windows.Forms.DataGridView();
 			this.saleItemNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.saleItemQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
 			this.saleItemTotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,15 +78,15 @@
 			panel2.SuspendLayout();
 			panel3.SuspendLayout();
 			panel4.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.saleItemsDataGrid)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.documentPositionsDataGrid)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// panel1
 			// 
 			panel1.BackColor = System.Drawing.Color.DodgerBlue;
 			panel1.Controls.Add(this.goodNameLabel);
-			panel1.Controls.Add(this.saleItemTotalLabel);
-			panel1.Controls.Add(this.saleItemQuantityLabel);
+			panel1.Controls.Add(this.positionTotalLabel);
+			panel1.Controls.Add(this.positionQuantityLabel);
 			panel1.Controls.Add(this.goodPriceLabel);
 			panel1.Controls.Add(this.goodIdLabel);
 			panel1.Controls.Add(label4);
@@ -108,25 +108,25 @@
 			this.goodNameLabel.TabIndex = 8;
 			this.goodNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// saleItemTotalLabel
+			// positionTotalLabel
 			// 
-			this.saleItemTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.saleItemTotalLabel.ForeColor = System.Drawing.SystemColors.Window;
-			this.saleItemTotalLabel.Location = new System.Drawing.Point(721, 2);
-			this.saleItemTotalLabel.Name = "saleItemTotalLabel";
-			this.saleItemTotalLabel.Size = new System.Drawing.Size(104, 23);
-			this.saleItemTotalLabel.TabIndex = 7;
-			this.saleItemTotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.positionTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.positionTotalLabel.ForeColor = System.Drawing.SystemColors.Window;
+			this.positionTotalLabel.Location = new System.Drawing.Point(721, 2);
+			this.positionTotalLabel.Name = "positionTotalLabel";
+			this.positionTotalLabel.Size = new System.Drawing.Size(104, 23);
+			this.positionTotalLabel.TabIndex = 7;
+			this.positionTotalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// saleItemQuantityLabel
+			// positionQuantityLabel
 			// 
-			this.saleItemQuantityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.saleItemQuantityLabel.ForeColor = System.Drawing.SystemColors.Window;
-			this.saleItemQuantityLabel.Location = new System.Drawing.Point(497, 2);
-			this.saleItemQuantityLabel.Name = "saleItemQuantityLabel";
-			this.saleItemQuantityLabel.Size = new System.Drawing.Size(136, 23);
-			this.saleItemQuantityLabel.TabIndex = 6;
-			this.saleItemQuantityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.positionQuantityLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.positionQuantityLabel.ForeColor = System.Drawing.SystemColors.Window;
+			this.positionQuantityLabel.Location = new System.Drawing.Point(497, 2);
+			this.positionQuantityLabel.Name = "positionQuantityLabel";
+			this.positionQuantityLabel.Size = new System.Drawing.Size(136, 23);
+			this.positionQuantityLabel.TabIndex = 6;
+			this.positionQuantityLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// goodPriceLabel
 			// 
@@ -217,10 +217,10 @@
 			// panel3
 			// 
 			panel3.BackColor = System.Drawing.Color.DodgerBlue;
-			panel3.Controls.Add(this.saleItemsCountLabel);
+			panel3.Controls.Add(this.documentPositionsCountLabel);
 			panel3.Controls.Add(this.documentIdLabel);
 			panel3.Controls.Add(this.documentTypeLabel);
-			panel3.Controls.Add(this.saleTotalLabel);
+			panel3.Controls.Add(this.documentTotalLabel);
 			panel3.Controls.Add(label8);
 			panel3.Controls.Add(label7);
 			panel3.Controls.Add(label6);
@@ -230,15 +230,15 @@
 			panel3.Size = new System.Drawing.Size(837, 124);
 			panel3.TabIndex = 2;
 			// 
-			// saleItemsCountLabel
+			// documentPositionsCountLabel
 			// 
-			this.saleItemsCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.saleItemsCountLabel.ForeColor = System.Drawing.SystemColors.Window;
-			this.saleItemsCountLabel.Location = new System.Drawing.Point(166, 79);
-			this.saleItemsCountLabel.Name = "saleItemsCountLabel";
-			this.saleItemsCountLabel.Size = new System.Drawing.Size(136, 23);
-			this.saleItemsCountLabel.TabIndex = 12;
-			this.saleItemsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.documentPositionsCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.documentPositionsCountLabel.ForeColor = System.Drawing.SystemColors.Window;
+			this.documentPositionsCountLabel.Location = new System.Drawing.Point(166, 79);
+			this.documentPositionsCountLabel.Name = "documentPositionsCountLabel";
+			this.documentPositionsCountLabel.Size = new System.Drawing.Size(136, 23);
+			this.documentPositionsCountLabel.TabIndex = 12;
+			this.documentPositionsCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// documentIdLabel
 			// 
@@ -260,15 +260,15 @@
 			this.documentTypeLabel.TabIndex = 10;
 			this.documentTypeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// saleTotalLabel
+			// documentTotalLabel
 			// 
-			this.saleTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.saleTotalLabel.ForeColor = System.Drawing.SystemColors.Window;
-			this.saleTotalLabel.Location = new System.Drawing.Point(416, 34);
-			this.saleTotalLabel.Name = "saleTotalLabel";
-			this.saleTotalLabel.Size = new System.Drawing.Size(407, 68);
-			this.saleTotalLabel.TabIndex = 9;
-			this.saleTotalLabel.TextAlign = System.Drawing.ContentAlignment.BottomRight;
+			this.documentTotalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+			this.documentTotalLabel.ForeColor = System.Drawing.SystemColors.Window;
+			this.documentTotalLabel.Location = new System.Drawing.Point(416, 34);
+			this.documentTotalLabel.Name = "documentTotalLabel";
+			this.documentTotalLabel.Size = new System.Drawing.Size(407, 68);
+			this.documentTotalLabel.TabIndex = 9;
+			this.documentTotalLabel.TextAlign = System.Drawing.ContentAlignment.BottomRight;
 			// 
 			// label8
 			// 
@@ -346,16 +346,16 @@
 			this.accountNameLabel.Text = "Администратор";
 			this.accountNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
-			// saleItemsDataGrid
+			// documentPositionsDataGrid
 			// 
-			this.saleItemsDataGrid.AllowUserToAddRows = false;
-			this.saleItemsDataGrid.AllowUserToDeleteRows = false;
-			this.saleItemsDataGrid.AllowUserToResizeColumns = false;
-			this.saleItemsDataGrid.AllowUserToResizeRows = false;
-			this.saleItemsDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
-			this.saleItemsDataGrid.BackgroundColor = System.Drawing.Color.AliceBlue;
-			this.saleItemsDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-			this.saleItemsDataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+			this.documentPositionsDataGrid.AllowUserToAddRows = false;
+			this.documentPositionsDataGrid.AllowUserToDeleteRows = false;
+			this.documentPositionsDataGrid.AllowUserToResizeColumns = false;
+			this.documentPositionsDataGrid.AllowUserToResizeRows = false;
+			this.documentPositionsDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
+			this.documentPositionsDataGrid.BackgroundColor = System.Drawing.Color.AliceBlue;
+			this.documentPositionsDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+			this.documentPositionsDataGrid.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
 			dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
 			dataGridViewCellStyle1.BackColor = System.Drawing.Color.AliceBlue;
 			dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -363,9 +363,9 @@
 			dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.DodgerBlue;
 			dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
 			dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-			this.saleItemsDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-			this.saleItemsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.saleItemsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+			this.documentPositionsDataGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			this.documentPositionsDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.documentPositionsDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.saleItemNameColumn,
             this.saleItemQuantityColumn,
             this.saleItemTotalColumn,
@@ -378,17 +378,17 @@
 			dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DodgerBlue;
 			dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
 			dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-			this.saleItemsDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
-			this.saleItemsDataGrid.GridColor = System.Drawing.Color.AliceBlue;
-			this.saleItemsDataGrid.Location = new System.Drawing.Point(13, 13);
-			this.saleItemsDataGrid.MultiSelect = false;
-			this.saleItemsDataGrid.Name = "saleItemsDataGrid";
-			this.saleItemsDataGrid.ReadOnly = true;
-			this.saleItemsDataGrid.RowHeadersVisible = false;
-			this.saleItemsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-			this.saleItemsDataGrid.Size = new System.Drawing.Size(837, 304);
-			this.saleItemsDataGrid.TabIndex = 1;
-			this.saleItemsDataGrid.SelectionChanged += new System.EventHandler(this.saleItemsDataGrid_SelectionChanged);
+			this.documentPositionsDataGrid.DefaultCellStyle = dataGridViewCellStyle2;
+			this.documentPositionsDataGrid.GridColor = System.Drawing.Color.AliceBlue;
+			this.documentPositionsDataGrid.Location = new System.Drawing.Point(13, 13);
+			this.documentPositionsDataGrid.MultiSelect = false;
+			this.documentPositionsDataGrid.Name = "documentPositionsDataGrid";
+			this.documentPositionsDataGrid.ReadOnly = true;
+			this.documentPositionsDataGrid.RowHeadersVisible = false;
+			this.documentPositionsDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+			this.documentPositionsDataGrid.Size = new System.Drawing.Size(837, 304);
+			this.documentPositionsDataGrid.TabIndex = 1;
+			this.documentPositionsDataGrid.SelectionChanged += new System.EventHandler(this.saleItemsDataGrid_SelectionChanged);
 			// 
 			// saleItemNameColumn
 			// 
@@ -442,7 +442,7 @@
 			this.Controls.Add(panel3);
 			this.Controls.Add(panel2);
 			this.Controls.Add(panel1);
-			this.Controls.Add(this.saleItemsDataGrid);
+			this.Controls.Add(this.documentPositionsDataGrid);
 			this.DoubleBuffered = true;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
 			this.KeyPreview = true;
@@ -456,21 +456,21 @@
 			panel2.PerformLayout();
 			panel3.ResumeLayout(false);
 			panel4.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.saleItemsDataGrid)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.documentPositionsDataGrid)).EndInit();
 			this.ResumeLayout(false);
 
 		}
 
 		#endregion
 
-		private System.Windows.Forms.DataGridView saleItemsDataGrid;
+		private System.Windows.Forms.DataGridView documentPositionsDataGrid;
 		private System.Windows.Forms.TextBox inputTextBox;
 		private System.Windows.Forms.Label goodNameLabel;
-		private System.Windows.Forms.Label saleItemTotalLabel;
-		private System.Windows.Forms.Label saleItemQuantityLabel;
+		private System.Windows.Forms.Label positionTotalLabel;
+		private System.Windows.Forms.Label positionQuantityLabel;
 		private System.Windows.Forms.Label goodPriceLabel;
 		private System.Windows.Forms.Label goodIdLabel;
-		private System.Windows.Forms.Label saleTotalLabel;
+		private System.Windows.Forms.Label documentTotalLabel;
 		private System.Windows.Forms.Label currentTimeLabel;
 		private System.Windows.Forms.Label accountNameLabel;
 		private System.Windows.Forms.Timer currentTimeRefreshTimer;
@@ -479,7 +479,7 @@
 		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemTotalColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemIdColumn;
 		private System.Windows.Forms.DataGridViewTextBoxColumn saleItemPriceColumn;
-		private System.Windows.Forms.Label saleItemsCountLabel;
+		private System.Windows.Forms.Label documentPositionsCountLabel;
 		private System.Windows.Forms.Label documentIdLabel;
 		private System.Windows.Forms.Label documentTypeLabel;
 	}

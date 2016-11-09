@@ -9,14 +9,13 @@ namespace HappyCashier.Presenter.Views
 	{
 		Account Account { get; set; }
 		Document Document { get; set; }
-		string GoodNameRequested { get; }
+		string GoodsNameRequested { get; }
 
-		void GoodInfoReturned(Goods good);
-
+		void GoodsInfoReturned(Goods good);
 		void ShowError(string message);
 
 		event Action OpenSaleRequested;
 		event Action CloseSaleRequested;
-		event Action GoodInfoRequested;
+		event Action GoodsInfoRequested;
 	}
 }

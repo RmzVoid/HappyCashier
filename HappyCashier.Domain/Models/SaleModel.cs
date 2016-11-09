@@ -26,7 +26,7 @@ namespace HappyCashier.Domain.Models
 			_dataSource.CloseSale(saleToClose);
 		}
 
-		public Goods GetGood(string name)
+		public Goods GetGoods(string name)
 		{
 			return _dataSource.GetGood(name);
 		}

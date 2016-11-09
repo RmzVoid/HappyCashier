@@ -22,7 +22,7 @@ namespace HappyCashier.Presenter.Presenters
 		{
 			_model = model;
 
-			_view.GoodInfoRequested += goodInfoRequested;
+			_view.GoodsInfoRequested += goodInfoRequested;
 			_view.CloseSaleRequested += closeSaleRequested;
 			_view.OpenSaleRequested += openSaleRequested;
 		}
@@ -40,25 +40,34 @@ namespace HappyCashier.Presenter.Presenters
 
 		private void closeSaleRequested()
 		{
-			DocumentModel saleToClose = new DocumentModel();
+			DocumentObject doc = _view.Document; // shortcut
 
-			saleToClose.Id = _view.Document.Id;
-			saleToClose.DateTimeOpen = _view.Document.OpenTime;
-			saleToClose.DateTimeClose = _view.Document.CloseTime;
-			saleToClose.Positions = _view.Document.Positions
-				.Select<PositionObject, PositionModel>(p => new PositionModel() 
-				{ 
-					Id = p.Id, 
-					Price = p.Price,
-					Quantity = p.Quantity
-				});
+			if (doc != null && doc.Positions != null && doc.Positions.Count > 0)
+			{
+				DocumentModel saleToClose = new DocumentModel();
 
-			_model.CloseSale(saleToClose);
+				saleToClose.Id = _view.Document.Id;
+				saleToClose.DateTimeOpen = _view.Document.OpenTime;
+				saleToClose.DateTimeClose = _view.Document.CloseTime;
+				saleToClose.Positions = _view.Document.Positions
+					.Select<PositionObject, PositionModel>(p => new PositionModel()
+					{
+						Id = p.Id,
+						Price = p.Price,
+						Quantity = p.Quantity
+					});
+
+				_model.CloseSale(saleToClose);
+				_view.Document = null;
+			}
 		}
 
 		private void goodInfoRequested()
 		{
-			GoodsModel goodsModel = _model.GetGood(_view.GoodNameRequested);
+			if (string.IsNullOrWhiteSpace(_view.GoodsNameRequested))
+				return;
+
+			GoodsModel goodsModel = _model.GetGoods(_view.GoodsNameRequested);
 
 			if (goodsModel != null)
 			{
@@ -69,10 +78,10 @@ namespace HappyCashier.Presenter.Presenters
 						Price = goodsModel.Price
 					};
 
-				_view.GoodInfoReturned(goods);
+				_view.GoodsInfoReturned(goods);
 			}
 			else
-				_view.ShowError("Товар '" + _view.GoodNameRequested + "' не найден");
+				_view.ShowError("Товар '" + _view.GoodsNameRequested + "' не найден");
 		}
 
 		private ISaleModel _model;

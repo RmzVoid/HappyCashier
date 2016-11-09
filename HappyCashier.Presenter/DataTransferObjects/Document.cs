@@ -11,7 +11,7 @@ namespace HappyCashier.Presenter.DataTransferObjects
 		public int Id { get; set; }
 		public DateTime? OpenTime {get; set;}
 		public DateTime? CloseTime { get; set; }
-		public List<Position> Positions { get; set; }
+		public ICollection<Position> Positions { get; set; }
 		public decimal Total { get { return Positions.Sum(p => p.Total); } }
 
 		public Document(int id)

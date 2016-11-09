@@ -6,6 +6,6 @@ namespace HappyCashier.Domain.Models
 	{
 		int OpenSale(int accountId);
 		void CloseSale(Document saleToClose);
-		Goods GetGood(string name);
+		Goods GetGoods(string name);
 	}
 }

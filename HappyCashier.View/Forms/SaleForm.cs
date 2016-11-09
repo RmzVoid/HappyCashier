@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 using HappyCashier.Presenter.DataTransferObjects;
@@ -30,7 +32,7 @@ namespace HappyCashier.View.Forms
 		public Document Document
 		{
 			get { return _document; }
-			set { _document = value; }
+			set { _document = value; onDocumentUpdate(); }
 		}
 		
 		public Account Account
@@ -39,22 +41,21 @@ namespace HappyCashier.View.Forms
 			set { _account = value; accountNameLabel.Text = value.Name; }
 		}
 
-		public string GoodNameRequested { get { return inputTextBox.Text; } }
+		public string GoodsNameRequested { get { return inputTextBox.Text; } }
 
 		public event Action OpenSaleRequested;
 		public event Action CloseSaleRequested;
-		public event Action GoodInfoRequested;
+		public event Action GoodsInfoRequested;
 
-		public void GoodInfoReturned(Goods goods)
+		public void GoodsInfoReturned(Goods goods)
 		{
-			if (_document == null)
-				Invoke(OpenSaleRequested);
-
-			GetDecimalDialog dialog = new GetDecimalDialog("Кол-во: ", 1);
-			decimal? quantity = dialog.RequestUserValue();
+			decimal? quantity = new GetDecimalDialog("Кол-во: ", 1).RequestUserValue();
 
 			if (quantity.HasValue && quantity.Value > 0)
 			{
+				if (_document == null)
+					Invoke(OpenSaleRequested);
+
 				_document.Positions.Add(
 					new Position()
 					{
@@ -90,18 +91,33 @@ namespace HappyCashier.View.Forms
 		private void onDocumentUpdate()
 		{
 			if (_document == null)
+			{
+				documentIdLabel.Text = string.Empty;
+				documentTypeLabel.Text = string.Empty;
+				documentTotalLabel.Text = string.Empty;
+				documentPositionsCountLabel.Text = string.Empty;
+
+				documentPositionsDataGrid.Rows.Clear();
+
+				goodNameLabel.Text = string.Empty;
+				positionQuantityLabel.Text = string.Empty;
+				positionTotalLabel.Text = string.Empty;
+				goodIdLabel.Text = string.Empty;
+				goodPriceLabel.Text = string.Empty;
+
 				return;
+			}
 
 			documentIdLabel.Text = _document.Id.ToString();
 			documentTypeLabel.Text = "Продажа";
 
 			// save selected item index in goods list
-			int selectedSaleItemIndex = saleItemsDataGrid.SelectedRows.Count > 0 ? saleItemsDataGrid.SelectedRows[0].Index : int.MaxValue;
-			saleItemsDataGrid.Rows.Clear();
+			int selectedSaleItemIndex = documentPositionsDataGrid.SelectedRows.Count > 0 ? documentPositionsDataGrid.SelectedRows[0].Index : int.MaxValue;
+			documentPositionsDataGrid.Rows.Clear();
 
 			foreach(var item in _document.Positions)
 			{
-				saleItemsDataGrid.Rows.Add(
+				documentPositionsDataGrid.Rows.Add(
 					item.Name,
 					item.Quantity.ToString("N3"),
 					item.Total.ToString("N2"),
@@ -109,12 +125,38 @@ namespace HappyCashier.View.Forms
 					item.Price.ToString("N2"));
 			}
 
-			if (selectedSaleItemIndex < saleItemsDataGrid.Rows.Count)
-				saleItemsDataGrid.Rows[selectedSaleItemIndex].Selected = true;
+			if (selectedSaleItemIndex < documentPositionsDataGrid.Rows.Count)
+				documentPositionsDataGrid.Rows[selectedSaleItemIndex].Selected = true;
 
-			saleTotalLabel.Text = _document.Total.ToString("N2");
+			documentTotalLabel.Text = _document.Total.ToString("N2");
 
-			saleItemsCountLabel.Text = _document.Positions.Count.ToString();
+			documentPositionsCountLabel.Text = _document.Positions.Count.ToString();
+		}
+
+		private void closeSale()
+		{
+			if (_document != null && _document.Positions.Count > 0)
+			{
+				// we can recieve null or some value
+				// if null - user leave empty input field or cancel dialog
+				decimal? cash = new GetDecimalDialog("Наличные: ", 0.00m).RequestUserValue();
+
+				// do if null, just leave all as is
+				if (!cash.HasValue)
+					return;
+
+				if (cash.Value >= _document.Total)
+				{
+					_document.CloseTime = DateTime.Now;
+					decimal documentTotal = _document.Total; // cuz _document will be nulled in next string
+
+					Invoke(CloseSaleRequested);
+
+					MessageBox.Show(string.Format(
+						"Здесь мы выводим размер сдачи, печатаем чек, счет или накладную. Кстати сдача {0} у.е.",
+						documentTotal - cash.Value));
+				}
+			}
 		}
 
 		private void Invoke(Action action)
@@ -139,26 +181,25 @@ namespace HappyCashier.View.Forms
 			{
 				if (string.IsNullOrWhiteSpace(inputTextBox.Text))
 				{
-					Document.CloseTime = DateTime.Now;
-					Invoke(CloseSaleRequested);
+					closeSale();
 				}
 				else
-					Invoke(GoodInfoRequested);
+					Invoke(GoodsInfoRequested);
 
 			}
 			else if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
 			{
-				if (saleItemsDataGrid.SelectedRows.Count > 0)
+				if (documentPositionsDataGrid.SelectedRows.Count > 0)
 				{
 					int increment = e.KeyCode == Keys.Up ? -1 : 1;
-					int currentRowIndex = saleItemsDataGrid.SelectedRows[0].Index;
-					int rowsCount = saleItemsDataGrid.Rows.Count;
+					int currentRowIndex = documentPositionsDataGrid.SelectedRows[0].Index;
+					int rowsCount = documentPositionsDataGrid.Rows.Count;
 
 					int rowToSelectIndex = (currentRowIndex + increment) % rowsCount;
 
 					if (rowToSelectIndex < 0) rowToSelectIndex = rowsCount - 1;
 
-					saleItemsDataGrid.Rows[rowToSelectIndex].Selected = true;
+					documentPositionsDataGrid.Rows[rowToSelectIndex].Selected = true;
 				}
 			}
 		}
@@ -170,13 +211,13 @@ namespace HappyCashier.View.Forms
 
 		private void saleItemsDataGrid_SelectionChanged(object sender, EventArgs e)
 		{
-			if (saleItemsDataGrid.SelectedRows.Count > 0)
+			if (documentPositionsDataGrid.SelectedRows.Count > 0)
 			{
-				goodNameLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[0].Value.ToString();
-				saleItemQuantityLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[1].Value.ToString();
-				saleItemTotalLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[2].Value.ToString();
-				goodIdLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[3].Value.ToString();
-				goodPriceLabel.Text = saleItemsDataGrid.SelectedRows[0].Cells[4].Value.ToString();
+				goodNameLabel.Text = documentPositionsDataGrid.SelectedRows[0].Cells[0].Value.ToString();
+				positionQuantityLabel.Text = documentPositionsDataGrid.SelectedRows[0].Cells[1].Value.ToString();
+				positionTotalLabel.Text = documentPositionsDataGrid.SelectedRows[0].Cells[2].Value.ToString();
+				goodIdLabel.Text = documentPositionsDataGrid.SelectedRows[0].Cells[3].Value.ToString();
+				goodPriceLabel.Text = documentPositionsDataGrid.SelectedRows[0].Cells[4].Value.ToString();
 			}
 		}
 
