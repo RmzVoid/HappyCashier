@@ -3,7 +3,8 @@ using System.Windows.Forms;
 
 namespace HappyCashier.View.Dialogs
 {
-	public partial class GetDecimalDialog : Form, INumberDialog<decimal?>
+	// Creates modal dialog requesting some value from user
+	public partial class GetDecimalDialog : Form, IValueDialog<decimal?>
 	{
 		public GetDecimalDialog(string caption, decimal defaultValue)
 		{
@@ -12,32 +13,13 @@ namespace HappyCashier.View.Dialogs
 			captionLabel.Text = caption;
 			valueTextBox.Text = defaultValue.ToString();
 
+			// bad flexible layout
 			this.Width = 8 + captionLabel.Width + 8 + valueTextBox.Width + 8;
 			this.Height = 8 + Math.Max(captionLabel.Height, valueTextBox.Height) + 8;
 			valueTextBox.Left = captionLabel.Right + 8;
 		}
 
-		public decimal? Value
-		{
-			get
-			{
-				decimal? value = null;
-
-				try
-				{
-					value = decimal.Parse(valueTextBox.Text);
-				}
-				catch
-				{
-				}
-
-				return value;
-			}
-			set
-			{
-				valueTextBox.Text = value.HasValue ? value.Value.ToString() : string.Empty;
-			}
-		}
+		#region IValueDialog implementation
 
 		public decimal? RequestUserValue()
 		{
@@ -56,6 +38,10 @@ namespace HappyCashier.View.Dialogs
 			}
 
 		}
+
+		#endregion
+
+		#region Internal logic
 
 		private void GetDecimalDialog_KeyPress(object sender, KeyPressEventArgs e)
 		{
@@ -77,13 +63,16 @@ namespace HappyCashier.View.Dialogs
 		private void GetDecimalDialog_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (e.KeyCode == Keys.Return)
-				this.Close();
-
-			if (e.KeyCode == Keys.Escape)
+			{
+				Close();
+			}
+			else if (e.KeyCode == Keys.Escape)
 			{
 				valueTextBox.Text = string.Empty;
-				this.Close();
+				Close();
 			}
 		}
+
+		#endregion
 	}
 }

@@ -1,6 +1,6 @@
 ﻿namespace HappyCashier.View.Dialogs
 {
-	interface INumberDialog<T>
+	interface IValueDialog<T>
 	{
 		T RequestUserValue();
 	}

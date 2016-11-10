@@ -23,25 +23,11 @@ namespace HappyCashier.View.Forms
 			accountNameInput.SelectedIndexChanged += (sender, args) => passwordInput.Focus();
 		}
 
+		#region ILoginView implementation
+
 		public void ShowError(string message)
 		{
 			errorText.Text = message;
-		}
-
-		private void Invoke(Action action)
-		{
-			if (action != null) action();
-		}
-
-		public void ShowMe()
-		{
-			_context.MainForm = this;
-			Application.Run(_context);
-		}
-
-		public void CloseMe()
-		{
-			Close();
 		}
 
 		public string AccountName
@@ -88,7 +74,37 @@ namespace HappyCashier.View.Forms
 		public event Action AccountListRequested;
 		public event Action LoginRequested;
 
+		#endregion
+
+		#region IView implementation
+
+		public void ShowMe()
+		{
+			_context.MainForm = this;
+			Application.Run(_context);
+		}
+
+		public void CloseMe()
+		{
+			Close();
+		}
+
+		#endregion
+
+		#region Internal logic
+
+		private void Invoke(Action action)
+		{
+			if (action != null) action();
+		}
+
+		#endregion
+
+		#region Private fields
+
 		private ApplicationContext _context;
 		private ISet<string> _accounts;
+
+		#endregion
 	}
 }

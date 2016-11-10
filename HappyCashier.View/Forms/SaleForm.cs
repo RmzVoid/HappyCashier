@@ -26,15 +26,17 @@ namespace HappyCashier.View.Forms
 			_context = context;
 		}
 
+		#region ISaleView implementation
+
 		public Document Document
 		{
 			get { return _document; }
 			set { _document = value; onDocumentUpdate(); }
 		}
-		
+
 		public Account Account
-		{ 
-			get { return _account; } 
+		{
+			get { return _account; }
 			set { _account = value; accountNameLabel.Text = value.Name; }
 		}
 
@@ -73,6 +75,10 @@ namespace HappyCashier.View.Forms
 			MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
 		}
 
+		#endregion
+
+		#region IView implementation
+
 		public void ShowMe()
 		{
 			_context.MainForm = this;
@@ -83,6 +89,10 @@ namespace HappyCashier.View.Forms
 		{
 			base.Close();
 		}
+
+		#endregion
+
+		#region Internal logic
 
 		// Updates values of all controls with values from _document
 		private void onDocumentUpdate()
@@ -108,11 +118,11 @@ namespace HappyCashier.View.Forms
 			documentIdLabel.Text = _document.Id.ToString();
 			documentTypeLabel.Text = "Продажа";
 
-			// save selected item index in goods list
+			// save selection of datagridview
 			int selectedSaleItemIndex = documentPositionsDataGrid.SelectedRows.Count > 0 ? documentPositionsDataGrid.SelectedRows[0].Index : int.MaxValue;
 			documentPositionsDataGrid.Rows.Clear();
 
-			foreach(var item in _document.Positions)
+			foreach (var item in _document.Positions)
 			{
 				documentPositionsDataGrid.Rows.Add(
 					item.Name,
@@ -122,6 +132,7 @@ namespace HappyCashier.View.Forms
 					item.Price.ToString("N2"));
 			}
 
+			// restore selection
 			if (selectedSaleItemIndex < documentPositionsDataGrid.Rows.Count)
 				documentPositionsDataGrid.Rows[selectedSaleItemIndex].Selected = true;
 
@@ -135,7 +146,7 @@ namespace HappyCashier.View.Forms
 			if (_document != null && _document.Positions.Count > 0)
 			{
 				// we can recieve null or some value
-				// if null - user leave empty input field or cancel dialog
+				// if null - user leaves empty input field or cancels dialog
 				decimal? cash = new GetDecimalDialog("Наличные: ", 0.00m).RequestUserValue();
 
 				// do if null, just leave all as is
@@ -161,6 +172,7 @@ namespace HappyCashier.View.Forms
 			if (action != null) action();
 		}
 
+		// Form have only one input field, so here we intercept keypress and move focus to input box
 		private void MainForm_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if ((char.IsLetterOrDigit(e.KeyChar) || char.IsPunctuation(e.KeyChar)) && !inputTextBox.Focused)
@@ -172,9 +184,11 @@ namespace HappyCashier.View.Forms
 			}
 		}
 
+		// Process Enter key press
+		// Also allow to navigate in datagrid using arrow keys
 		private void inputTextBox_KeyDown(object sender, KeyEventArgs e)
 		{
-			if(e.KeyCode == Keys.Return)
+			if (e.KeyCode == Keys.Return)
 			{
 				if (string.IsNullOrWhiteSpace(inputTextBox.Text))
 				{
@@ -201,11 +215,13 @@ namespace HappyCashier.View.Forms
 			}
 		}
 
+		// Performs clock label update
 		private void currentTimeRefreshTimer_Tick(object sender, EventArgs e)
 		{
 			currentTimeLabel.Text = DateTime.Now.ToString();
 		}
 
+		// Updates Position info area upon selected item in datagrid changed
 		private void saleItemsDataGrid_SelectionChanged(object sender, EventArgs e)
 		{
 			if (documentPositionsDataGrid.SelectedRows.Count > 0)
@@ -218,8 +234,14 @@ namespace HappyCashier.View.Forms
 			}
 		}
 
+		#endregion
+
+		#region Private fields
+
 		private readonly ApplicationContext _context;
 		private Account _account = null;
 		private Document _document = null;
+
+		#endregion
 	}
 }
