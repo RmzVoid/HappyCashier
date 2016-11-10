@@ -6,12 +6,15 @@ using HappyCashier.Domain.Entities;
 
 namespace HappyCashier.Domain.DataSources
 {
+	// Implementation using database as source
 	public class DatabaseAccountDataSource : IAccountDataSource
 	{
 		public DatabaseAccountDataSource(DatabaseContext context)
 		{
 			_context = context;
 		}
+
+		#region IAccountDataSource implementation
 
 		public string GetRecentActive()
 		{
@@ -60,6 +63,12 @@ namespace HappyCashier.Domain.DataSources
 			_context.SaveChanges();
 		}
 
+		#endregion
+
+		#region Private fields
+
 		private DatabaseContext _context;
+
+		#endregion
 	}
 }

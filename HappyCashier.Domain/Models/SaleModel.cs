@@ -15,6 +15,8 @@ namespace HappyCashier.Domain.Models
 			_dataSource = dataSource;
 		}
 
+		#region ISaleModel implementation
+
 		public int OpenSale(int accountId)
 		{
 			return _dataSource.OpenSale(accountId);
@@ -30,6 +32,12 @@ namespace HappyCashier.Domain.Models
 			return _dataSource.GetGood(name);
 		}
 
+		#endregion
+
+		#region Private fields
+
 		private ISaleDataSource _dataSource;
+
+		#endregion
 	}
 }

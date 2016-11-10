@@ -9,7 +9,7 @@ namespace HappyCashier.Domain.DatabaseLayer
 		{
 			// database initialization policy: drop/create always
 			// behaviour should be moved to configuration file
-			Database.SetInitializer<SampleDatabaseContext>(new DatabaseInitializer<SampleDatabaseContext>());
+			Database.SetInitializer<SampleDatabaseContext>(new SampleDatabaseInitializer<SampleDatabaseContext>());
 		}
 	}
 }

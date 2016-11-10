@@ -5,7 +5,7 @@ using HappyCashier.Domain.Entities;
 
 namespace HappyCashier.Domain.DatabaseLayer
 {
-	class DatabaseInitializer<T> : DropCreateDatabaseIfModelChanges<T>
+	class SampleDatabaseInitializer<T> : DropCreateDatabaseAlways<T>
 		where T : DatabaseContext
 	{
 		protected override void Seed(T context)
@@ -33,8 +33,6 @@ namespace HappyCashier.Domain.DatabaseLayer
 			context.Account.AddRange(accounts);
 			context.Goods.AddRange(goods);
 			context.SaveChanges();
-
-			base.Seed(context);
 		}
 	}
 }

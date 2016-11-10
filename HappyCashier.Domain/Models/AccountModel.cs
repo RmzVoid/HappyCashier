@@ -16,6 +16,8 @@ namespace HappyCashier.Domain.Models
 			_dataSource = dataSource;
 		}
 
+		#region IAccountModel implementation
+
 		public string GetRecentActive()
 		{
 			return _dataSource.GetRecentActive();
@@ -36,6 +38,12 @@ namespace HappyCashier.Domain.Models
 			_dataSource.UpdateAccountInfo(account);
 		}
 
+		#endregion
+
+		#region Private fields
+
 		private IAccountDataSource _dataSource;
+
+		#endregion
 	}
 }

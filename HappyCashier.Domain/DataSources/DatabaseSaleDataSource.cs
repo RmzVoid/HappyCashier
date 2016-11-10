@@ -11,12 +11,15 @@ using GoodsModel = HappyCashier.Domain.Entities.Goods;
 
 namespace HappyCashier.Domain.DataSources
 {
+	// Implementation using database as source
 	public class DatabaseSaleDataSource : ISaleDataSource
 	{
 		public DatabaseSaleDataSource(DatabaseContext context)
 		{
 			_context = context;
 		}
+
+		#region ISaleDataSource implementation
 
 		public int OpenSale(int accountId)
 		{
@@ -74,6 +77,12 @@ namespace HappyCashier.Domain.DataSources
 			return new GoodsObject() { Id = good.Id, Name = good.Name, Price = good.Price };
 		}
 
+		#endregion
+
+		#region Private fields
+
 		private DatabaseContext _context;
+
+		#endregion
 	}
 }
