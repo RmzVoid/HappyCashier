@@ -2,6 +2,7 @@
 
 namespace HappyCashier.Presenter.DataTransferObjects
 {
+	// Describes position in Document
 	public class Position
 	{
 		public int Id { get; set; }

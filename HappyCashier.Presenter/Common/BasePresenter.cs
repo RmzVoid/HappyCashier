@@ -9,13 +9,21 @@
 			_controller = controller;
 		}
 
-		public void Run()
+		#region IPresenter implementation
+
+		public virtual void Run()
 		{
 			_view.ShowMe();
 		}
 
+		#endregion
+
+		#region Private fields
+
 		protected TView _view;
 		protected IApplicationController _controller;
+
+		#endregion
 	}
 
 	// accepts one argument in Run function
@@ -28,9 +36,17 @@
 			_controller = controller;
 		}
 
+		#region IPresenter declarations
+
 		public abstract void Run(TArgument argument);
+
+		#endregion
+
+		#region Private fields
 
 		protected TView _view;
 		protected IApplicationController _controller;
+
+		#endregion
 	}
 }

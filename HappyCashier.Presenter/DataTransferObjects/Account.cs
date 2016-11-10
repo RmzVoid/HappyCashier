@@ -1,6 +1,6 @@
 ﻿namespace HappyCashier.Presenter.DataTransferObjects
 {
-	// object used in presenter/view transfer
+	// Describes currently logged in account
 	public class Account
 	{
 		public int Id { get; set; }

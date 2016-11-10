@@ -4,6 +4,8 @@ namespace HappyCashier.Presenter.Common
 {
 	public class ApplicationController : IApplicationController
 	{
+		#region IApplicationController implementation
+
 		public ApplicationController()
 		{
 			_container = new UnityContainer();
@@ -47,6 +49,12 @@ namespace HappyCashier.Presenter.Common
 			_container.Resolve<TPresenter>().Run(argument);
 		}
 
+		#endregion
+
+		#region Private fields
+
 		private IUnityContainer _container;
+
+		#endregion
 	}
 }

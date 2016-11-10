@@ -26,11 +26,17 @@ namespace HappyCashier.Presenter.Presenters
 			_view.OpenSaleRequested += openSaleRequested;
 		}
 
+		#region BasePresenter overridings
+
 		public override void Run(Account account)
 		{
 			_view.Account = account;
 			_view.ShowMe();
 		}
+
+		#endregion
+
+		#region Internal logic
 
 		private void openSaleRequested()
 		{
@@ -83,6 +89,12 @@ namespace HappyCashier.Presenter.Presenters
 				_view.ShowError("Товар '" + _view.GoodsNameRequested + "' не найден");
 		}
 
+		#endregion
+
+		#region Private fields
+
 		private ISaleModel _model;
+
+		#endregion
 	}
 }

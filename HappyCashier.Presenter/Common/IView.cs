@@ -2,7 +2,7 @@
 {
 	public interface IView
 	{
-		void ShowMe();	// cuz Show method exist in Control
+		void ShowMe();	// Me suffix - cuz Show method exist in Control
 		void CloseMe();	// same here
 	}
 }

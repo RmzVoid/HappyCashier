@@ -21,6 +21,8 @@ namespace HappyCashier.Presenter.Presenters
 			_view.LoginRequested += () => Login();
 		}
 
+		#region Internal logic
+
 		private void GetRecentAccount()
 		{
 			_view.AccountName = _model.GetRecentActive();
@@ -52,6 +54,12 @@ namespace HappyCashier.Presenter.Presenters
 				_view.ShowError("Вход неуспешен");
 		}
 
+		#endregion
+
+		#region Private fields
+
 		private IAccountModel _model;
+
+		#endregion
 	}
 }

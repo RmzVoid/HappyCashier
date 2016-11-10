@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace HappyCashier.Presenter.DataTransferObjects
 {
+	// Describes trade document
 	public class Document
 	{
 		public int Id { get; set; }
