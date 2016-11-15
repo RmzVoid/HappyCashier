@@ -16,24 +16,24 @@ namespace HappyCashier.Presenter.Presenters
 		{
 			_model = model;
 
-			_view.RecentAccountRequested += () => GetRecentAccount();
-			_view.AccountListRequested += () => GetAccountsList();
-			_view.LoginRequested += () => Login();
+			_view.RecentAccountRequested += () => getRecentAccount();
+			_view.AccountListRequested += () => getAccountsList();
+			_view.LoginRequested += () => login();
 		}
 
 		#region Internal logic
 
-		private void GetRecentAccount()
+		private void getRecentAccount()
 		{
 			_view.AccountName = _model.GetRecentActive();
 		}
 
-		private void GetAccountsList()
+		private void getAccountsList()
 		{
 			_view.AccountList = _model.GetAccountList();
 		}
 
-		private void Login()
+		private void login()
 		{
 			AccountModel account = _model.GetAccount(_view.AccountName, _view.AccountPassword);
 

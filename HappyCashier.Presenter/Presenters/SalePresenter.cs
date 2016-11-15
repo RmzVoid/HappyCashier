@@ -21,7 +21,7 @@ namespace HappyCashier.Presenter.Presenters
 		{
 			_model = model;
 
-			_view.GoodsInfoRequested += goodInfoRequested;
+			_view.GoodsInfoRequested += goodsInfoRequested;
 			_view.CloseSaleRequested += closeSaleRequested;
 			_view.OpenSaleRequested += openSaleRequested;
 		}
@@ -67,7 +67,7 @@ namespace HappyCashier.Presenter.Presenters
 			}
 		}
 
-		private void goodInfoRequested()
+		private void goodsInfoRequested()
 		{
 			if (string.IsNullOrWhiteSpace(_view.GoodsNameRequested))
 				return;
